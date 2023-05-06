@@ -1,0 +1,29 @@
+/* header{
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+}
+header nav ul{
+    display: flex;
+    
+}
+header ul{
+    list-style-type: none;
+}
+header li{
+    padding: 20px 15px;
+} */
+
+.task{
+    width: 20%;
+    background-color: rgb(94, 205, 63);
+    display: inline-table;
+    margin: 16px;
+    text-align: center;
+
+
+
+}
+.card{
+    width: 20%;
+}
