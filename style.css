@@ -14,16 +14,60 @@ header li{
     padding: 20px 15px;
 } */
 
-.task{
+/* .task{
     width: 20%;
     background-color: rgb(94, 205, 63);
     display: inline-table;
     margin: 16px;
     text-align: center;
+} */
 
+/* Navbar */
 
-
+.navbar {
+  background-color: rgb(194, 226, 16) !important;
 }
-.card{
-    width: 20%;
+
+/* Main */
+
+main {
+  background-color: rgb(167, 163, 163);
+  min-height: calc(100vh - 112px);
+}
+
+main button {
+  background-color: rgb(33, 95, 105) !important;
+}
+
+.card {
+  width: 20%;
+  color: yellow;
+}
+
+.modal {
+  color: rgb(33, 95, 105);
+}
+
+.modal-footer button .close {
+  background-color: rgb(167, 163, 163) !important;
+}
+
+/* Footer */
+
+footer {
+  background-color: rgb(194, 226, 16);
+  padding: 8px;
+  height: 56px;
+}
+
+#uncopyright {
+ display: flex;
+ justify-content: center;
+}
+#uncopyright img{
+height: 40px;
+width: auto;
+}
+#uncopyright p{
+    padding-bottom: 0 !important;
 }
