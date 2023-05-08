@@ -25,7 +25,7 @@ header li{
 /* Navbar */
 
 .navbar {
-  background-color: rgb(194, 226, 16) !important;
+  background-color: rgb(226, 187, 16);
 }
 
 /* Main */
@@ -36,7 +36,7 @@ main {
 }
 
 main button {
-  background-color: rgb(33, 95, 105) !important;
+  background-color: rgb(66, 164, 130) !important;
 }
 
 .card {
@@ -45,7 +45,7 @@ main button {
 }
 
 .modal {
-  color: rgb(33, 95, 105);
+  color: rgb(32, 166, 187);
 }
 
 .modal-footer button .close {
@@ -55,7 +55,7 @@ main button {
 /* Footer */
 
 footer {
-  background-color: rgb(194, 226, 16);
+  background-color: rgb(226, 187, 16);
   padding: 8px;
   height: 56px;
 }
