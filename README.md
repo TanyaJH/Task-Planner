@@ -4,12 +4,9 @@
 
 This repo provides the platform to organise tasks to do, in progress, up for review and completed.
 
-## Why you used the technologies you used:
+## Why we used the technologies we used:
 
-We used HTML, CSS & Bootstrap to enable to flexibilty to manipulate our layout and form structure.
-Some of the challenges you faced and features you hope to implement in the future:
-
-We faced a challenge learning to adjust the padding for our footer and the steps of the range slide bar.
+We used HTML, CSS & Bootstrap to enable flexibility to manipulate our layout and form structure. Some of the challenges we faced and features we hoped to implement in the future was learning to adjust the padding for our footer and the steps of the range slide bar.
 
 ## How to use this project:
 
