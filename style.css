@@ -30,6 +30,22 @@ header li{
 
 /* Main */
 
+.addTask form {
+  position: static;
+
+  margin-left: 3rem;
+  margin-right: 3rem;
+  justify-items: center;
+}
+
+.addTask form .form-range {
+  width: 44%;
+}
+
+.addTask form .two {
+  padding: 0 16%;
+}
+
 main {
   background-color: rgb(167, 163, 163);
   min-height: calc(100vh - 112px);
