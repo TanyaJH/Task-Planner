@@ -74,124 +74,99 @@
         </div>
       </div> -->
 
-
       <!-- Button for Add -->
-      <div class="addTas">
-    
+  
 
-   <div class="addTask">
-     <form>
-       <div class="modal-content bg-body-primary">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5 my-3" id="staticBackdropLabel">
-            NEW TASK
-          </h1>
+      <div class="addTask">
+        <form id="submit" action="/" method="get">
+          <div class="modal-content bg-body-primary">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 my-3" id="staticBackdropLabel">
+                NEW TASK
+              </h1>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="task-name" class="form-label">Task Name</label>
+                  <br />
+                  <strong><small id="error-taskName"></small></strong>
+                  <input
+                    placeholder="Give a name to the task"
+                    type="task-name"
+                    class="form-control"
+                    id="task-name"
+                    aria-describedby="emailHelp"
+                    required
+                  />
+                </div>
+                <div class="form-floating">
+                  <strong><small id="error-description"></small></strong>
+                  <textarea
+                    class="form-control"
+                    placeholder="Give a description of the task"
+                    id="description"
+                    style="height: 100px"
+                    maxlength="250"
+                    required
+                  ></textarea>
+                  <label id="placeholder" for="description"
+                    >Describe the task here...</label
+                  >
+                  <div id="the-count" class="position-absolute end-0">
+                    <span id="current">0</span>
+                    <span id="maximum">/ 250</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="assigned-to" class="my-3">Assigned To:</label>
+                  <select id="assigned-to" name="Assigned To:" required >
+                    <option value="">Select Victim</option>
+                    <option value="jed">Jed</option>
+                    <option value="felipe">Felipe</option>
+                    <option value="tanya">Tanya</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="due-date" class="mb-2" required>Due Date</label>
+                  <input type="date" name="start_date" required min="2023-06-06" />
+                  <br />
+                
+                </div>
 
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="task-name" class="form-label">Task Name</label>
-              <input
-                type="task-name"
-                class="form-control"
-                id="task-name"
-                aria-describedby="emailHelp"
-              />
+                <label for="customRange2" class="form-label mt-3">Status</label>
+                <div class="status-label">
+                  <label for="task-name" class="form-label one">TO DO</label>
+                  <label for="task-name" class="form-label two"
+                    >IN PROGRESS</label
+                  >
+                  <label for="task-name" class="form-label three">REVIEW</label>
+                </div>
+                <input
+                  type="range"
+                  class="form-range"
+                  min="0"
+                  max="2"
+                  id="customRange2"
+                />
+                <br />
+                <br />
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label for="customRange2" class="form-label">DONE</label>
+                <br />
+              </form>
             </div>
-            <div class="form-floating">
-              <textarea
-                class="form-control"
-                placeholder="Leave a comment here"
-                id="floatingTextarea2"
-                style="height: 100px"
-              ></textarea>
-              <label for="floatingTextarea2">Description</label>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">SUBMIT</button>
             </div>
-            <div>
-              <label for="assigned-to" class="my-3">Assigned To:</label>
-              <select id="assigned-to" name="Assigned To:">
-                <option value="jed">Jed</option>
-                <option value="felipe">Felipe</option>
-                <option value="tanya">Tanya</option>
-              </select>
-            </div>
-            <div>
-              <label for="due-date" class="mb-2">Due Date</label>
-              <br />
-              <label for="day">Day</label>
-              <input
-                id="day"
-                name="Day"
-                type="number"
-                step="1"
-                min="1"
-                max="31"
-              />
-              <label for="month">Month</label>
-              <select id="month" name="Month">
-                <option value=""></option>
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
-              </select>
-              <label for="year">Year</label>
-              <input
-                id="year"
-                name="Year"
-                type="number"
-                step="1"
-                min="2023"
-                max="2033"
-              />
-            </div>
-            
-            <label for="customRange2" class="form-label mt-3">Status</label>
-            <div class="status-label">
-              <label for="task-name" class="form-label one">TO DO</label>
-              <label for="task-name" class="form-label two"
-                >IN PROGRESS</label
-              >
-              <label for="task-name" class="form-label three">REVIEW</label>
-              
-            </div>
-            <input
-              type="range"
-              class="form-range"
-              min="0"
-              max="2"
-              id="customRange2"
-              />
-            <br>
-            <br>
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-            />
-            <label for="customRange2" class="form-label">DONE</label>
-            <br />
-          </form>
-        </div>
-        <div class="modal-footer">
-        
-          <button type="submit" class="btn btn-primary">SUBMIT</button>
-          
-        </div>
+          </div>
+        </form>
       </div>
-    
-     </form>
-   </div>
-    <hr>
+      <hr />
       <!-- Card trigger modal -->
       <button
         type="button"
@@ -278,37 +253,49 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="submit" action="\" method="get">
                 <div class="mb-3">
                   <label for="task-name" class="form-label">Task Name</label>
+                  <br />
+                  <strong><small id="error-taskName"></small></strong>
                   <input
                     type="task-name"
                     class="form-control"
                     id="task-name"
                     aria-describedby="emailHelp"
+                    required
                   />
                 </div>
                 <div class="form-floating">
+                  <strong><small id="error-description"></small></strong>
                   <textarea
                     class="form-control"
-                    placeholder="Leave a comment here"
-                    id="floatingTextarea2"
+                    placeholder="Give description of task"
+                    id="description"
+                    maxlength="250"
                     style="height: 100px"
+                    required
                   ></textarea>
-                  <label for="floatingTextarea2">Description</label>
+                  <label for="description">Describe the task here...</label>
+                  <div id="the-count" class="position-absolute end-0">
+                    <span id="current">0</span>
+                    <span id="maximum">/ 250</span>
+                  </div>
                 </div>
                 <div>
                   <label for="assigned-to" class="my-3">Assigned To:</label>
-                  <select id="assigned-to" name="Assigned To:">
+                  <select id="assigned-to" name="Assigned To:" required>
+                    <option value="">Select Victim</option>
                     <option value="jed">Jed</option>
                     <option value="felipe">Felipe</option>
                     <option value="tanya">Tanya</option>
                   </select>
                 </div>
                 <div>
-                  <label for="due-date" class="mb-2">Due Date</label>
+                  <label for="due-date" class="mb-2" required>Due Date</label>
+                  <input type="date" name="start_date" required min="2023-06-06" />
                   <br />
-                  <label for="day">Day</label>
+                  <!-- <label for="day">Day</label>
                   <input
                     id="day"
                     name="Day"
@@ -341,7 +328,7 @@
                     step="1"
                     min="2023"
                     max="2033"
-                  />
+                  /> -->
                 </div>
                 <!-- <div class="mb-3 form-check"> -->
                 <label for="customRange2" class="form-label mt-3">Status</label>
@@ -504,5 +491,6 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <script src="./index.js"></script>
   </body>
 </html>

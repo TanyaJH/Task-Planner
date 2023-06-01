@@ -50,6 +50,11 @@ main {
   background-color: rgb(167, 163, 163);
   min-height: calc(100vh - 112px);
 }
+small {
+  color: red;
+  
+  
+}
 
 main button {
   background-color: rgb(66, 164, 130) !important;
