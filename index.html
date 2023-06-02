@@ -129,7 +129,7 @@
                 </div>
                 <div>
                   <label for="due-date" class="mb-2" required>Due Date</label>
-                  <input type="date" name="start_date" required min="2023-06-06" />
+                  <input id="taskDate" type="date" name="start_date" required min="2023-06-06" />
                   <br />
                 
                 </div>
@@ -168,7 +168,10 @@
       </div>
       <hr />
       <!-- Card trigger modal -->
-      <button
+      <div id="taskCards">
+
+      </div>
+      <!-- <button
         type="button"
         class="btn btn-primary m-3"
         data-bs-toggle="modal"
@@ -227,7 +230,7 @@
         <h6 class="text-start">Due Date</h6>
         <h6 class="text-start">Assigned To</h6>
         <h6 class="text-start">Status</h6>
-      </button>
+      </button> -->
 
       <!-- Modal -->
       <div
@@ -243,7 +246,7 @@
           <div class="modal-content bg-body-primary">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                POSTaker
+                POSTasker
               </h1>
               <button
                 type="button"
@@ -253,12 +256,13 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form id="submit" action="\" method="get">
+              <form id="submit" action="/" method="get">
                 <div class="mb-3">
                   <label for="task-name" class="form-label">Task Name</label>
                   <br />
                   <strong><small id="error-taskName"></small></strong>
                   <input
+                    placeholder="Give a name to the task"
                     type="task-name"
                     class="form-control"
                     id="task-name"
@@ -270,13 +274,13 @@
                   <strong><small id="error-description"></small></strong>
                   <textarea
                     class="form-control"
-                    placeholder="Give description of task"
+                    placeholder="Give a description of task"
                     id="description"
-                    maxlength="250"
                     style="height: 100px"
+                    maxlength="250"
                     required
                   ></textarea>
-                  <label for="description">Describe the task here...</label>
+                  <label id="placeholder" for="description">Describe the task here...</label>
                   <div id="the-count" class="position-absolute end-0">
                     <span id="current">0</span>
                     <span id="maximum">/ 250</span>
@@ -358,17 +362,17 @@
                 />
                 <label for="customRange2" class="form-label">DONE</label>
                 <br />
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary close bg-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary close bg-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary">Save</button>
             </div>
           </div>
         </div>
