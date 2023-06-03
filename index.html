@@ -134,7 +134,7 @@
                 
                 </div>
 
-                <label for="customRange2" class="form-label mt-3">Status</label>
+                <label for="status-range" class="form-label mt-3">Status</label>
                 <div class="status-label">
                   <label for="task-name" class="form-label one">TO DO</label>
                   <label for="task-name" class="form-label two"
@@ -147,7 +147,8 @@
                   class="form-range"
                   min="0"
                   max="2"
-                  id="customRange2"
+                  id="status-range"
+                  value = '0'
                 />
                 <br />
                 <br />
@@ -256,39 +257,39 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form id="submit" action="/" method="get">
+              <form id="submit-modal" action="/" method="get">
                 <div class="mb-3">
-                  <label for="task-name" class="form-label">Task Name</label>
+                  <label for="task-name-modal" class="form-label">Task Name</label>
                   <br />
-                  <strong><small id="error-taskName"></small></strong>
+                  <strong><small id="error-taskName-modal"></small></strong>
                   <input
                     placeholder="Give a name to the task"
-                    type="task-name"
+                    type="task-name-modal"
                     class="form-control"
-                    id="task-name"
+                    id="task-name-modal"
                     aria-describedby="emailHelp"
                     required
                   />
                 </div>
                 <div class="form-floating">
-                  <strong><small id="error-description"></small></strong>
+                  <strong><small id="error-description-modal"></small></strong>
                   <textarea
                     class="form-control"
                     placeholder="Give a description of task"
-                    id="description"
+                    id="description-modal"
                     style="height: 100px"
                     maxlength="250"
                     required
                   ></textarea>
-                  <label id="placeholder" for="description">Describe the task here...</label>
-                  <div id="the-count" class="position-absolute end-0">
+                  <label id="placeholder-modal" for="description-modal">Describe the task here...</label>
+                  <div id="the-count-modal" class="position-absolute end-0">
                     <span id="current">0</span>
                     <span id="maximum">/ 250</span>
                   </div>
                 </div>
                 <div>
-                  <label for="assigned-to" class="my-3">Assigned To:</label>
-                  <select id="assigned-to" name="Assigned To:" required>
+                  <label for="assigned-to-modal" class="my-3">Assigned To:</label>
+                  <select id="assigned-to-modal" name="Assigned To:" required>
                     <option value="">Select Victim</option>
                     <option value="jed">Jed</option>
                     <option value="felipe">Felipe</option>
@@ -296,8 +297,8 @@
                   </select>
                 </div>
                 <div>
-                  <label for="due-date" class="mb-2" required>Due Date</label>
-                  <input type="date" name="start_date" required min="2023-06-06" />
+                  <label for="due-date-modal" class="mb-2" required>Due Date</label>
+                  <input id="taskDate-modal" type="date" name="start_date" required min="2023-06-06" />
                   <br />
                   <!-- <label for="day">Day</label>
                   <input
@@ -337,19 +338,20 @@
                 <!-- <div class="mb-3 form-check"> -->
                 <label for="customRange2" class="form-label mt-3">Status</label>
                 <div class="status-label">
-                  <label for="task-name" class="form-label one">TO DO</label>
-                  <label for="task-name" class="form-label two"
+                  <label for="to-do-modal" class="form-label one">TO DO</label>
+                  <label for="in-progress-modal" class="form-label two"
                     >IN PROGRESS</label
                   >
-                  <label for="task-name" class="form-label three">REVIEW</label>
+                  <label for="review-modal" class="form-label three">REVIEW</label>
                   <!-- <label for="task-name" class="form-label">DONE</label> -->
                 </div>
                 <input
                   type="range"
-                  class="form-range"
+                  class="form-range-modal"
                   min="0"
                   max="2"
                   id="customRange2"
+                  value = '0'
                 />
                 <!-- <label class="form-check-label" for="exampleCheck1"
                     >Check me out</label
@@ -368,7 +370,7 @@
                     class="btn btn-secondary close bg-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Close
+                    Delete Task
                   </button>
                   <button type="submit" class="btn btn-primary">Save</button>
                 </div>
