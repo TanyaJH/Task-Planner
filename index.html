@@ -75,7 +75,6 @@
       </div> -->
 
       <!-- Button for Add -->
-  
 
       <div class="addTask">
         <form id="submit" action="/" method="get">
@@ -120,18 +119,23 @@
                 </div>
                 <div>
                   <label for="assigned-to" class="my-3">Assigned To:</label>
-                  <select id="assigned-to" name="Assigned To:" required >
+                  <select id="assigned-to" name="Assigned To:" required>
                     <option value="">Select Victim</option>
-                    <option value="jed">Jed</option>
-                    <option value="felipe">Felipe</option>
-                    <option value="tanya">Tanya</option>
+                    <option value="Jed">Jed</option>
+                    <option value="Felipe">Felipe</option>
+                    <option value="Tanya">Tanya</option>
                   </select>
                 </div>
                 <div>
                   <label for="due-date" class="mb-2" required>Due Date</label>
-                  <input id="taskDate" type="date" name="start_date" required min="2023-06-06" />
+                  <input
+                    id="taskDate"
+                    type="date"
+                    name="start_date"
+                    required
+                    min="2023-06-06"
+                  />
                   <br />
-                
                 </div>
 
                 <label for="status-range" class="form-label mt-3">Status</label>
@@ -148,7 +152,7 @@
                   min="0"
                   max="2"
                   id="status-range"
-                  value = '0'
+                  value="0"
                 />
                 <br />
                 <br />
@@ -168,70 +172,9 @@
         </form>
       </div>
       <hr />
-      <!-- Card trigger modal -->
-      <div id="taskCards">
 
-      </div>
-      <!-- <button
-        type="button"
-        class="btn btn-primary m-3"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        <h4 class="text-start">Task to the road of glory:</h4>
-        <h6 class="text-start">Description</h6>
-        <h6 class="text-start">Due Date</h6>
-        <h6 class="text-start">Assigned To</h6>
-        <h6 class="text-start">Status</h6>
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary m-3"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        <h4 class="text-start">Task to the road of glory:</h4>
-        <h6 class="text-start">Description</h6>
-        <h6 class="text-start">Due Date</h6>
-        <h6 class="text-start">Assigned To</h6>
-        <h6 class="text-start">Status</h6>
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary m-3"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        <h4 class="text-start">Task to the road of glory:</h4>
-        <h6 class="text-start">Description</h6>
-        <h6 class="text-start">Due Date</h6>
-        <h6 class="text-start">Assigned To</h6>
-        <h6 class="text-start">Status</h6>
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary m-3"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        <h4 class="text-start">Task to the road of glory:</h4>
-        <h6 class="text-start">Description</h6>
-        <h6 class="text-start">Due Date</h6>
-        <h6 class="text-start">Assigned To</h6>
-        <h6 class="text-start">Status</h6>
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary m-3"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        <h4 class="text-start">Task to the road of glory:</h4>
-        <h6 class="text-start">Description</h6>
-        <h6 class="text-start">Due Date</h6>
-        <h6 class="text-start">Assigned To</h6>
-        <h6 class="text-start">Status</h6>
-      </button> -->
+      <!-- Card trigger modal -->
+      <div id="taskCards"></div>
 
       <!-- Modal -->
       <div
@@ -259,7 +202,9 @@
             <div class="modal-body">
               <form id="submit-modal" action="/" method="get">
                 <div class="mb-3">
-                  <label for="task-name-modal" class="form-label">Task Name</label>
+                  <label for="task-name-modal" class="form-label"
+                    >Task Name</label
+                  >
                   <br />
                   <strong><small id="error-taskName-modal"></small></strong>
                   <input
@@ -281,68 +226,48 @@
                     maxlength="250"
                     required
                   ></textarea>
-                  <label id="placeholder-modal" for="description-modal">Describe the task here...</label>
+                  <label id="placeholder-modal" for="description-modal"
+                    >Describe the task here...</label
+                  >
                   <div id="the-count-modal" class="position-absolute end-0">
                     <span id="current">0</span>
                     <span id="maximum">/ 250</span>
                   </div>
                 </div>
                 <div>
-                  <label for="assigned-to-modal" class="my-3">Assigned To:</label>
+                  <label for="assigned-to-modal" class="my-3"
+                    >Assigned To:</label
+                  >
                   <select id="assigned-to-modal" name="Assigned To:" required>
                     <option value="">Select Victim</option>
-                    <option value="jed">Jed</option>
-                    <option value="felipe">Felipe</option>
-                    <option value="tanya">Tanya</option>
+                    <option value="Jed">Jed</option>
+                    <option value="Felipe">Felipe</option>
+                    <option value="Tanya">Tanya</option>
                   </select>
                 </div>
                 <div>
-                  <label for="due-date-modal" class="mb-2" required>Due Date</label>
-                  <input id="taskDate-modal" type="date" name="start_date" required min="2023-06-06" />
-                  <br />
-                  <!-- <label for="day">Day</label>
+                  <label for="due-date-modal" class="mb-2" required
+                    >Due Date</label
+                  >
                   <input
-                    id="day"
-                    name="Day"
-                    type="number"
-                    step="1"
-                    min="1"
-                    max="31"
+                    id="taskDate-modal"
+                    type="date"
+                    name="start_date"
+                    required
+                    min="2023-06-06"
                   />
-                  <label for="month">Month</label>
-                  <select id="month" name="Month">
-                    <option value=""></option>
-                    <option value="january">January</option>
-                    <option value="february">February</option>
-                    <option value="march">March</option>
-                    <option value="april">April</option>
-                    <option value="may">May</option>
-                    <option value="june">June</option>
-                    <option value="july">July</option>
-                    <option value="august">August</option>
-                    <option value="september">September</option>
-                    <option value="october">October</option>
-                    <option value="november">November</option>
-                    <option value="december">December</option>
-                  </select>
-                  <label for="year">Year</label>
-                  <input
-                    id="year"
-                    name="Year"
-                    type="number"
-                    step="1"
-                    min="2023"
-                    max="2033"
-                  /> -->
+                  <br />
                 </div>
                 <!-- <div class="mb-3 form-check"> -->
-                <label for="customRange2" class="form-label mt-3">Status</label>
+                <label for="status-range-modal" class="form-label mt-3">Status</label>
                 <div class="status-label">
                   <label for="to-do-modal" class="form-label one">TO DO</label>
                   <label for="in-progress-modal" class="form-label two"
                     >IN PROGRESS</label
                   >
-                  <label for="review-modal" class="form-label three">REVIEW</label>
+                  <label for="review-modal" class="form-label three"
+                    >REVIEW</label
+                  >
                   <!-- <label for="task-name" class="form-label">DONE</label> -->
                 </div>
                 <input
@@ -350,8 +275,8 @@
                   class="form-range-modal"
                   min="0"
                   max="2"
-                  id="customRange2"
-                  value = '0'
+                  id="status-range-modal"
+                  value="0"
                 />
                 <!-- <label class="form-check-label" for="exampleCheck1"
                     >Check me out</label
@@ -369,6 +294,7 @@
                     type="button"
                     class="btn btn-secondary close bg-secondary"
                     data-bs-dismiss="modal"
+                    onclick="deleteTask()"
                   >
                     Delete Task
                   </button>
