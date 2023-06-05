@@ -1,5 +1,5 @@
 const taskName = document.querySelector("#task-name");
-// console.log(taskName)
+console.log(taskName);
 
 const description = document.querySelector("#description");
 // console.log(description)
@@ -40,8 +40,8 @@ const formModal = document.querySelector("#submit-modal");
 
 // Error messages form
 const errorName = document.getElementById("error-taskName");
-// console.log(errorName);
-const errorDesc = document.getElementById("error-description");
+console.log(errorName);
+// const errorDesc = document.getElementById("error-description");
 // console.log(errorDesc);
 
 const taskCards = document.getElementById("taskCards");
@@ -59,13 +59,15 @@ const taskCardsModal = document.getElementById("taskCards-modal");
 
 // <-- FORM LOGIC -->
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  // e.preventDefault();
   //   console.log("something");
-  validationForm();
+  validationForm(e);
 });
 
 description.addEventListener("input", () => {
   const change = document.querySelector("#placeholder");
+  if (!description) {
+  }
   change.style.display = "none";
 
   const lettercount = (document.getElementById("description").onkeyup =
@@ -76,52 +78,34 @@ description.addEventListener("input", () => {
     });
 });
 
-const validationForm = () => {
-  let valid = false;
-
+const validationForm = (e) => {
   const max = 30;
   const min = 5;
 
   const taskNameLength = taskName.value.length;
-
-  const nameValue = taskName.value;
-  //   console.log(nameValue);
+  console.log(taskNameLength);
 
   let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
   let regexDesc = /^.{250}$/;
 
   if (taskNameLength > max) {
     errorName.innerText = "This name is too long";
+    e.preventDefault();
   } else if (!regexTask.test(taskName.value)) {
     errorName.innerText =
       "This only accepts characters from A to Z and numbers from 0 - 9";
+    e.preventDefault();
   } else if (taskNameLength < min) {
     errorName.innerText = "This name is too short, minimum 5 characters";
+    e.preventDefault();
   } else {
     dataForm();
+    return console.log("here");
   }
-
-  // if(!regexDesc.test(description.value)){
-  //     errorDesc.innerText = "This field is too long"
-  //     console.log('field too long');
-  // }
-
-  //   console.log(valid);
 };
 
 let tasksData = [];
-// {
-//   name: "wash car",
-//   date: "2023-08-21",
-//   assignedTo: "Jed",
-//   status: "In progress",
-// },
-// {
-//   name: "wash car on the morning4567890",
-//   date: "2023-08-21",
-//   assignedTo: "Jed",
-//   status: "In progress",
-// },
+
 const dataForm = () => {
   tasksData.push({
     name: taskName.value,
@@ -129,11 +113,9 @@ const dataForm = () => {
     assignedTo: assignedTo.value,
     date: taskDate.value,
     status: parseInt(status.value),
-
-    // status: taskStatus.value,
   });
   displayTask();
-  //   console.log(tasksData);
+  console.log(tasksData);
   localStorage.setItem("data", JSON.stringify(tasksData));
 };
 
@@ -144,16 +126,12 @@ const dataForm = () => {
 let selectedTask = 0;
 
 formModal.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  //   console.log(this);
-  //   console.log(event);
-  //   console.log("something");
   validationModal(event);
 });
 
-descriptionModal.addEventListener("input", () => {
+descriptionModal.addEventListener("submit", () => {
   const placeholder = document.querySelector("#placeholder-modal");
+
   placeholder.style.display = "none";
 
   const lettercount = (document.getElementById("description-modal").onkeyup =
@@ -164,23 +142,25 @@ descriptionModal.addEventListener("input", () => {
     });
 });
 
-const validationModal = () => {
-  let valid = false;
-
+const validationModal = (event) => {
   const max = 30;
   const min = 5;
 
   const taskNameLength = taskNameModal.value.length;
+
   let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
   let regexDesc = /^.{250}$/;
 
   if (taskNameLength > max) {
     errorNameModal.innerText = "This name is too long";
+    event.preventDefault();
   } else if (!regexTask.test(taskNameModal.value)) {
     errorNameModal.innerText =
       "This only accepts characters from A to Z and numbers from 0 - 9";
+    event.preventDefault();
   } else if (taskNameLength < min) {
     errorNameModal.innerText = "This name is too short, minimum 5 characters";
+    event.preventDefault();
   } else {
     dataFormModal();
   }
@@ -215,23 +195,27 @@ const displayTask = () => {
         ? "To do"
         : task.status === 1
         ? "In Progress"
-        : "Review";
+        : task.status === 2
+        ? "Review"
+        : "Done";
     // console.log(status);
     return (taskCards.innerHTML += `
         <div 
         id=${index}
         onClick= editTask(${index})
+        style="width: 30%"
+        class="mx-4"
         >
             <button
             type="button"
-            class="btn btn-primary m-3"
+            class="btn btn-primary my-3 w-100"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
             >
-                <h4 class="text-start">${task.name}:</h4>
-                <h6 class="text-start">${task.date}</h6>
-                <h6 class="text-start">${task.assignedTo}</h6>
-                <h6 class="text-start">${status}</h6>
+                <h4 class="text-start w-100">${task.name}</h4>
+                <h6 class="text-start"><span class="text-warning">Due date:</span> ${task.date}</h6>
+                <h6 class="text-start"><span class="text-warning">Assigned to:</span> ${task.assignedTo}</h6>
+                <h6 class="text-start"><span class="text-warning">Status:</span> ${status}</h6>
             </button>
         </div>
         `);
@@ -240,8 +224,9 @@ const displayTask = () => {
 
 const editTask = (taskPosition) => {
   selectedTask = taskPosition;
+  console.log(selectedTask);
   let task = tasksData[taskPosition];
-  //   console.log(task.assignedTo);
+  console.log(task);
 
   taskNameModal.value = task.name;
   descriptionModal.value = task.description;
@@ -252,14 +237,14 @@ const editTask = (taskPosition) => {
   const placeholder = document.querySelector("#placeholder-modal");
   placeholder.style.display = "none";
 
-  const lettercount = (document.getElementById("description-modal").onchange =
+  const lettercount = (document.getElementById("description-modal").onkeyup =
     function () {
       document.getElementById(
         "the-count-modal"
       ).innerHTML = `${descriptionModal.value.length} / 250`;
     });
 
-    lettercount()
+  lettercount();
 };
 // displayTask();
 

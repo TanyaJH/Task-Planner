@@ -139,29 +139,23 @@
                 </div>
 
                 <label for="status-range" class="form-label mt-3">Status</label>
-                <div class="status-label">
+                <div class="status-label d-flex justify-content-between w-50">
                   <label for="task-name" class="form-label one">TO DO</label>
                   <label for="task-name" class="form-label two"
                     >IN PROGRESS</label
                   >
                   <label for="task-name" class="form-label three">REVIEW</label>
+                  <label for="customRange2" class="form-label">DONE</label>
                 </div>
                 <input
                   type="range"
-                  class="form-range"
+                  class="form-range w-50"
                   min="0"
-                  max="2"
+                  max="3"
                   id="status-range"
                   value="0"
                 />
-                <br />
-                <br />
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="exampleCheck1"
-                />
-                <label for="customRange2" class="form-label">DONE</label>
+
                 <br />
               </form>
             </div>
@@ -174,7 +168,7 @@
       <hr />
 
       <!-- Card trigger modal -->
-      <div id="taskCards"></div>
+      <div id="taskCards" class="d-flex justify-content-start mx-auto flex-wrap"></div>
 
       <!-- Modal -->
       <div
@@ -259,8 +253,10 @@
                   <br />
                 </div>
                 <!-- <div class="mb-3 form-check"> -->
-                <label for="status-range-modal" class="form-label mt-3">Status</label>
-                <div class="status-label">
+                <label for="status-range-modal" class="form-label mt-3"
+                  >Status</label
+                >
+                <div class="status-label d-flex justify-content-between">
                   <label for="to-do-modal" class="form-label one">TO DO</label>
                   <label for="in-progress-modal" class="form-label two"
                     >IN PROGRESS</label
@@ -268,13 +264,13 @@
                   <label for="review-modal" class="form-label three"
                     >REVIEW</label
                   >
-                  <!-- <label for="task-name" class="form-label">DONE</label> -->
+                  <label for="done-modal" class="form-label">DONE</label>
                 </div>
                 <input
                   type="range"
-                  class="form-range-modal"
+                  class="form-range-modal w-100"
                   min="0"
-                  max="2"
+                  max="3"
                   id="status-range-modal"
                   value="0"
                 />
@@ -282,12 +278,12 @@
                     >Check me out</label
                     > -->
                 <!-- </div> -->
-                <input
+                <!-- <input
                   type="checkbox"
                   class="form-check-input"
                   id="exampleCheck1"
                 />
-                <label for="customRange2" class="form-label">DONE</label>
+                <label for="customRange2" class="form-label">DONE</label> -->
                 <br />
                 <div class="modal-footer">
                   <button
@@ -305,88 +301,6 @@
           </div>
         </div>
       </div>
-      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-      <!-- <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label"
-        >Password</label
-      >
-      <input
-        type="password"
-        class="form-control"
-        id="exampleInputPassword1"
-      />
-    </div> -->
-      <!-- <label for="status">Status</label>
-    <select name="status" id="status">
-        <option value="done">Done</option>
-        <option value="in-progress">In Progress</option>
-        <option value="done">Done</option>
-        <option value="to-do">To Do</option>
-    </select> -->
-      <!-- Cards -->
-      <!-- <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div>
-    <div class="task">
-        <h2>Task Name</h2>
-        <h4>Description</h4>
-        <H4>Status</H4>
-        <H4>Participant</H4>
-        <H4>Due Date</H4>     
-    </div> -->
     </main>
     <footer>
       <!-- <div class="card text-center"> -->
