@@ -37,12 +37,12 @@ const statusModal = document.querySelector("#status-range-modal");
 
 const formModal = document.querySelector("#submit-modal");
 
-// ERROR MESSAGE
+// ERROR MESSAGE 
 const errorName = document.getElementById("error-taskName");
 
 const taskCards = document.getElementById("taskCards");
 
-// ERROR
+// ERROR 
 const errorNameModal = document.getElementById("error-taskName-modal");
 
 const errorDescModal = document.getElementById("error-description-modal");
@@ -126,7 +126,6 @@ const saveNewTask = () => {
 let selectedTask = 0;
 
 formModal.addEventListener("submit", (event) => {
-  event.preventDefault();
   validationModal(event);
 });
 
@@ -143,7 +142,7 @@ descriptionModal.addEventListener("submit", () => {
     });
 });
 
-const validationModal = () => {
+const validationModal = (event) => {
   const max = 30;
   const min = 5;
 
@@ -154,11 +153,14 @@ const validationModal = () => {
 
   if (taskNameLength > max) {
     errorNameModal.innerText = "This name is too long";
+    event.preventDefault();
   } else if (!regexTask.test(taskNameModal.value)) {
     errorNameModal.innerText =
       "This only accepts characters from A to Z and numbers from 0 - 9";
+    event.preventDefault();
   } else if (taskNameLength < min) {
     errorNameModal.innerText = "This name is too short, minimum 5 characters";
+    event.preventDefault();
   } else {
     saveNewTaskModal();
   }
@@ -177,7 +179,6 @@ const saveNewTaskModal = () => {
 
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
-  clearFields();
 };
 
 const displayTask = () => {
@@ -235,6 +236,7 @@ const editTask = (taskPosition) => {
 };
 
 const deleteTask = () => {
+  
   tasksData.splice(selectedTask, 1);
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
