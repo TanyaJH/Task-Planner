@@ -1,3 +1,5 @@
+//GENERAL VARIABLE
+
 const STATUS_MAPPING = {
   0: "To do",
   1: "In Progress",
@@ -9,106 +11,52 @@ let errorForm = false;
 
 let tasksData = [];
 
+// FORM SELECTORS
 const taskName = document.querySelector("#task-name");
-console.log(taskName);
 
 const description = document.querySelector("#description");
-// console.log(description)
 
 const assignedTo = document.querySelector("#assigned-to");
-// console.log(assignedTo);
 
 const taskDate = document.querySelector("#taskDate");
-// console.log(taskDate.value);
-
-// const assignment = document.querySelector("#assigned-to");
-// console.log(assignment.value);
 
 const status = document.querySelector("#status-range");
-// console.log(status.value);
-
 
 const form = document.querySelector("#submit");
-// console.log(form)
 
 // MODAL SELECTORS
 const taskNameModal = document.querySelector("#task-name-modal");
-// console.log(taskNameModal);
 
 const descriptionModal = document.querySelector("#description-modal");
-// console.log(descriptionModal);
 
 const assignedToModal = document.querySelector("#assigned-to-modal");
-// console.log(assignedToModal);
 
 const taskDateModal = document.querySelector("#taskDate-modal");
-// console.log(taskDateModal);
 
 const statusModal = document.querySelector("#status-range-modal");
-// console.log(status.value);
 
 const formModal = document.querySelector("#submit-modal");
-// console.log(formModal);
 
-// Error messages form
+// ERROR MESSAGE 
 const errorName = document.getElementById("error-taskName");
-console.log(errorName);
-// const errorDesc = document.getElementById("error-description");
-// console.log(errorDesc);
 
 const taskCards = document.getElementById("taskCards");
-// console.log(taskCards);
 
-// Error messages modal
+// ERROR 
 const errorNameModal = document.getElementById("error-taskName-modal");
-// console.log(errorNameModal);
 
 const errorDescModal = document.getElementById("error-description-modal");
-// console.log(errorDesc);
 
 const taskCardsModal = document.getElementById("taskCards-modal");
-// console.log(taskCardsModal);
 
 // <-- FORM LOGIC -->
 
-// class validation {
-//     constructor(e) {
-//       this.min = 5;
-//       this.max = 30;
-//       this.e = e
-//     }
-//     validationForm(e) {
-//       const taskNameLength = taskName.value.length;
-//       console.log(taskNameLength);
-
-//       let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
-//       let regexDesc = /^.{250}$/;
-
-//       if (taskNameLength > max) {
-//         errorName.innerText = "This name is too long";
-//         e.preventDefault();
-//       } else if (!regexTask.test(taskName.value)) {
-//         errorName.innerText =
-//           "This only accepts characters from A to Z and numbers from 0 - 9";
-//         e.preventDefault();
-//       } else if (taskNameLength < min) {
-//         errorName.innerText = "This name is too short, minimum 5 characters";
-//         e.preventDefault();
-//       } else {
-//         saveNewTask();
-//         return console.log("here");
-//       }
-//     }
-//   }
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  //   console.log("something");
-  saveNewTask()
+  saveNewTask();
 });
 
 const clearFields = () => {
-    
   form.reset();
 };
 
@@ -158,32 +106,6 @@ description.addEventListener("input", () => {
     });
 });
 
-// const validationForm = (e) => {
-//   const max = 30;
-//   const min = 5;
-
-//   const taskNameLength = taskName.value.length;
-//   console.log(taskNameLength);
-
-//   let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
-//   let regexDesc = /^.{250}$/;
-
-//   if (taskNameLength > max) {
-//     errorName.innerText = "This name is too long";
-//     // e.preventDefault();
-//   } else if (!regexTask.test(taskName.value)) {
-//     errorName.innerText =
-//       "This only accepts characters from A to Z and numbers from 0 - 9";
-//     // e.preventDefault();
-//   } else if (taskNameLength < min) {
-//     errorName.innerText = "This name is too short, minimum 5 characters";
-//     // e.preventDefault();
-//   } else {
-//     saveNewTask();
-//     return console.log("here");
-//   }
-// };
-
 const saveNewTask = () => {
   const newTask = {
     name: taskName.value,
@@ -198,8 +120,6 @@ const saveNewTask = () => {
   localStorage.setItem("data", JSON.stringify(tasksData));
   clearFields();
 };
-
-// console.log(tasksData);
 
 // MODAL
 
@@ -247,9 +167,7 @@ const validationModal = (event) => {
 };
 
 const saveNewTaskModal = () => {
-  //   console.log(selectedTask);
   tasksData.map((task, index) => {
-    // console.log(task);
     if (index === selectedTask) {
       task.name = taskNameModal.value;
       task.description = descriptionModal.value;
@@ -261,11 +179,7 @@ const saveNewTaskModal = () => {
 
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
-  //   console.log(tasksData);
 };
-
-// let any = taskCards
-// console.log(any)
 
 const displayTask = () => {
   taskCards.innerHTML = "";
@@ -320,23 +234,15 @@ const editTask = (taskPosition) => {
 
   lettercount();
 };
-// displayTask();
 
 const deleteTask = () => {
-  console.log();
-  //   someArray.splice(x, 1);
-  console.log(selectedTask);
+  
   tasksData.splice(selectedTask, 1);
   localStorage.setItem("data", JSON.stringify(tasksData));
-  // console.log(tasksData);
   displayTask();
 };
 
 (() => {
   tasksData = JSON.parse(localStorage.getItem("data")) || [];
-  //   console.log(tasksData);
   displayTask();
 })();
-
-// tasksData = []
-// console.log(tasksData);
