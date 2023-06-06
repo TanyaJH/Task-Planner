@@ -53,29 +53,9 @@
           </div>
         </div>
       </nav>
-      <!-- <h1>POSTasker</h1> -->
-      <!-- <nav>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Sign Up</li>
-                <li>Sign In</li>
-              </ul>
-        </nav> -->
     </header>
     <main>
-      <!-- card
-    <div class="card text-bg-dark">
-        <img src="..." class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small>Last updated 3 mins ago</small></p>
-        </div>
-      </div> -->
-
-      <!-- Button for Add -->
-
+      <!-- Add task form -->
       <div class="addTask">
         <form id="submit" action="/" method="get">
           <div class="modal-content bg-body-primary">
@@ -85,79 +65,77 @@
               </h1>
             </div>
             <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="task-name" class="form-label">Task Name</label>
-                  <br />
-                  <strong><small id="error-taskName"></small></strong>
-                  <input
-                    placeholder="Give a name to the task"
-                    type="task-name"
-                    class="form-control"
-                    id="task-name"
-                    aria-describedby="emailHelp"
-                    required
-                  />
-                </div>
-                <div class="form-floating">
-                  <strong><small id="error-description"></small></strong>
-                  <textarea
-                    class="form-control"
-                    placeholder="Give a description of the task"
-                    id="description"
-                    style="height: 100px"
-                    maxlength="250"
-                    required
-                  ></textarea>
-                  <label id="placeholder" for="description"
-                    >Describe the task here...</label
-                  >
-                  <div id="the-count" class="position-absolute end-0">
-                    <span id="current">0</span>
-                    <span id="maximum">/ 250</span>
-                  </div>
-                </div>
-                <div>
-                  <label for="assigned-to" class="my-3">Assigned To:</label>
-                  <select id="assigned-to" name="Assigned To:" required>
-                    <option value="">Select Victim</option>
-                    <option value="Jed">Jed</option>
-                    <option value="Felipe">Felipe</option>
-                    <option value="Tanya">Tanya</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="due-date" class="mb-2" required>Due Date</label>
-                  <input
-                    id="taskDate"
-                    type="date"
-                    name="start_date"
-                    required
-                    min="2023-06-06"
-                  />
-                  <br />
-                </div>
-
-                <label for="status-range" class="form-label mt-3">Status</label>
-                <div class="status-label d-flex justify-content-between w-50">
-                  <label for="task-name" class="form-label one">TO DO</label>
-                  <label for="task-name" class="form-label two"
-                    >IN PROGRESS</label
-                  >
-                  <label for="task-name" class="form-label three">REVIEW</label>
-                  <label for="customRange2" class="form-label">DONE</label>
-                </div>
-                <input
-                  type="range"
-                  class="form-range w-50"
-                  min="0"
-                  max="3"
-                  id="status-range"
-                  value="0"
-                />
-
+              <div class="mb-3">
+                <label for="task-name" class="form-label">Task Name:</label>
                 <br />
-              </form>
+                <strong><small id="error-taskName"></small></strong>
+                <input
+                  placeholder="Give a name to the task"
+                  type="task-name"
+                  class="form-control"
+                  id="task-name"
+                  aria-describedby="emailHelp"
+                  required
+                />
+              </div>
+              <div class="form-floating">
+                <strong><small id="error-description"></small></strong>
+                <textarea
+                  class="form-control"
+                  placeholder="Give a description of the task"
+                  id="description"
+                  style="height: 100px"
+                  maxlength="250"
+                  required
+                ></textarea>
+                <label id="placeholder" for="description"
+                  >Describe the task here...</label
+                >
+                <div id="the-count" class="position-absolute end-0">
+                  <span id="current">0</span>
+                  <span id="maximum">/ 250</span>
+                </div>
+              </div>
+              <div>
+                <label for="assigned-to" class="my-3">Assigned To:</label>
+                <select id="assigned-to" name="Assigned To:" required>
+                  <option value="">Select Victim</option>
+                  <option value="Jed">Jed</option>
+                  <option value="Felipe">Felipe</option>
+                  <option value="Tanya">Tanya</option>
+                </select>
+              </div>
+              <div>
+                <label for="due-date" class="mb-2" required>Due Date:</label>
+                <input
+                  id="taskDate"
+                  type="date"
+                  name="start_date"
+                  required
+                  min="2023-06-06"
+                />
+                <br />
+              </div>
+
+              <label for="status-range" class="form-label mt-3">Status:</label>
+              <div class="status-label d-flex justify-content-between w-50">
+                <label for="task-name" class="form-label one">To Do</label>
+                <label for="task-name" class="form-label two"
+                  >In Progress</label
+                >
+                <label for="task-name" class="form-label three">Review</label>
+                <label for="customRange2" class="form-label four">Done</label>
+              </div>
+              <input
+                type="range"
+                class="form-range w-50"
+                min="0"
+                max="3"
+                id="status-range"
+                value="0"
+              />
+
+              <br />
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary">SUBMIT</button>
@@ -168,7 +146,10 @@
       <hr />
 
       <!-- Card trigger modal -->
-      <div id="taskCards" class="d-flex justify-content-start mx-auto flex-wrap"></div>
+      <div
+        id="taskCards"
+        class="d-flex justify-content-start mx-auto flex-wrap"
+      ></div>
 
       <!-- Modal -->
       <div
@@ -197,7 +178,7 @@
               <form id="submit-modal" action="/" method="get">
                 <div class="mb-3">
                   <label for="task-name-modal" class="form-label"
-                    >Task Name</label
+                    >Task Name:</label
                   >
                   <br />
                   <strong><small id="error-taskName-modal"></small></strong>
@@ -241,7 +222,7 @@
                 </div>
                 <div>
                   <label for="due-date-modal" class="mb-2" required
-                    >Due Date</label
+                    >Due Date:</label
                   >
                   <input
                     id="taskDate-modal"
@@ -252,19 +233,19 @@
                   />
                   <br />
                 </div>
-                <!-- <div class="mb-3 form-check"> -->
+
                 <label for="status-range-modal" class="form-label mt-3"
-                  >Status</label
+                  >Status:</label
                 >
                 <div class="status-label d-flex justify-content-between">
-                  <label for="to-do-modal" class="form-label one">TO DO</label>
+                  <label for="to-do-modal" class="form-label one">To Do</label>
                   <label for="in-progress-modal" class="form-label two"
-                    >IN PROGRESS</label
+                    >In Progress</label
                   >
                   <label for="review-modal" class="form-label three"
-                    >REVIEW</label
+                    >Review</label
                   >
-                  <label for="done-modal" class="form-label">DONE</label>
+                  <label for="done-modal" class="form-label">Done</label>
                 </div>
                 <input
                   type="range"
@@ -274,16 +255,6 @@
                   id="status-range-modal"
                   value="0"
                 />
-                <!-- <label class="form-check-label" for="exampleCheck1"
-                    >Check me out</label
-                    > -->
-                <!-- </div> -->
-                <!-- <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="exampleCheck1"
-                />
-                <label for="customRange2" class="form-label">DONE</label> -->
                 <br />
                 <div class="modal-footer">
                   <button
@@ -303,19 +274,7 @@
       </div>
     </main>
     <footer>
-      <!-- <div class="card text-center"> -->
-      <!-- <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div> -->
       <div class="card-footer text-body-secondary">
-        <!-- <p class="text-center">
-          copy&copy Felipe | Jed | Tanya @ GoalKeeper Inc
-        </p> -->
         <div id="uncopyright">
           <img src="./Images/icon-recycle.png" alt="recycle icon" />
           <div class="ms-4 text-center">
@@ -325,12 +284,8 @@
             </p>
             <p class="mb-0">Please recycle this code responsibly</p>
           </div>
-          <!-- <p class="tet-center"></p> -->
         </div>
-        <!-- end copyright -->
       </div>
-
-      <!-- </div> -->
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

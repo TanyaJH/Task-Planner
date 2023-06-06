@@ -1,3 +1,14 @@
+const STATUS_MAPPING = {
+  0: "To do",
+  1: "In Progress",
+  2: "Review",
+  3: "Done",
+};
+
+let errorForm = false;
+
+let tasksData = [];
+
 const taskName = document.querySelector("#task-name");
 console.log(taskName);
 
@@ -15,6 +26,7 @@ const taskDate = document.querySelector("#taskDate");
 
 const status = document.querySelector("#status-range");
 // console.log(status.value);
+
 
 const form = document.querySelector("#submit");
 // console.log(form)
@@ -58,10 +70,78 @@ const taskCardsModal = document.getElementById("taskCards-modal");
 // console.log(taskCardsModal);
 
 // <-- FORM LOGIC -->
+
+// class validation {
+//     constructor(e) {
+//       this.min = 5;
+//       this.max = 30;
+//       this.e = e
+//     }
+//     validationForm(e) {
+//       const taskNameLength = taskName.value.length;
+//       console.log(taskNameLength);
+
+//       let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
+//       let regexDesc = /^.{250}$/;
+
+//       if (taskNameLength > max) {
+//         errorName.innerText = "This name is too long";
+//         e.preventDefault();
+//       } else if (!regexTask.test(taskName.value)) {
+//         errorName.innerText =
+//           "This only accepts characters from A to Z and numbers from 0 - 9";
+//         e.preventDefault();
+//       } else if (taskNameLength < min) {
+//         errorName.innerText = "This name is too short, minimum 5 characters";
+//         e.preventDefault();
+//       } else {
+//         saveNewTask();
+//         return console.log("here");
+//       }
+//     }
+//   }
+
 form.addEventListener("submit", (e) => {
-  // e.preventDefault();
+  e.preventDefault();
   //   console.log("something");
-  validationForm(e);
+  saveNewTask()
+});
+
+const clearFields = () => {
+    
+  form.reset();
+};
+
+taskName.addEventListener("input", () => {
+  const validateTaskName = (text, minLength, maxLength) => {
+    const regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
+    let validationResult = {
+      error: false,
+      message: "",
+    };
+    if (text.length < minLength) {
+      validationResult.error = true;
+      validationResult.message = `This name is too short, minimum ${minLength} characters`;
+    } else if (text.length > maxLength) {
+      validationResult.error = true;
+      validationResult.message = `This name is too long, maximum ${maxLength} characters`;
+    } else if (!regexTask.test(text)) {
+      validationResult.error = true;
+      validationResult.message = `This only accepts characters from A to Z and numbers from 0 - 9`;
+    }
+
+    return validationResult;
+  };
+
+  const { error, message } = validateTaskName(taskName.value, 5, 30);
+
+  if (error) {
+    errorName.innerHTML = message;
+    errorForm = true;
+  } else {
+    errorForm = false;
+    errorName.innerHTML = "";
+  }
 });
 
 description.addEventListener("input", () => {
@@ -78,45 +158,45 @@ description.addEventListener("input", () => {
     });
 });
 
-const validationForm = (e) => {
-  const max = 30;
-  const min = 5;
+// const validationForm = (e) => {
+//   const max = 30;
+//   const min = 5;
 
-  const taskNameLength = taskName.value.length;
-  console.log(taskNameLength);
+//   const taskNameLength = taskName.value.length;
+//   console.log(taskNameLength);
 
-  let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
-  let regexDesc = /^.{250}$/;
+//   let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
+//   let regexDesc = /^.{250}$/;
 
-  if (taskNameLength > max) {
-    errorName.innerText = "This name is too long";
-    e.preventDefault();
-  } else if (!regexTask.test(taskName.value)) {
-    errorName.innerText =
-      "This only accepts characters from A to Z and numbers from 0 - 9";
-    e.preventDefault();
-  } else if (taskNameLength < min) {
-    errorName.innerText = "This name is too short, minimum 5 characters";
-    e.preventDefault();
-  } else {
-    dataForm();
-    return console.log("here");
-  }
-};
+//   if (taskNameLength > max) {
+//     errorName.innerText = "This name is too long";
+//     // e.preventDefault();
+//   } else if (!regexTask.test(taskName.value)) {
+//     errorName.innerText =
+//       "This only accepts characters from A to Z and numbers from 0 - 9";
+//     // e.preventDefault();
+//   } else if (taskNameLength < min) {
+//     errorName.innerText = "This name is too short, minimum 5 characters";
+//     // e.preventDefault();
+//   } else {
+//     saveNewTask();
+//     return console.log("here");
+//   }
+// };
 
-let tasksData = [];
-
-const dataForm = () => {
-  tasksData.push({
+const saveNewTask = () => {
+  const newTask = {
     name: taskName.value,
     description: description.value,
     assignedTo: assignedTo.value,
     date: taskDate.value,
     status: parseInt(status.value),
-  });
+  };
+  tasksData = [...tasksData, newTask];
   displayTask();
-  console.log(tasksData);
+
   localStorage.setItem("data", JSON.stringify(tasksData));
+  clearFields();
 };
 
 // console.log(tasksData);
@@ -162,11 +242,11 @@ const validationModal = (event) => {
     errorNameModal.innerText = "This name is too short, minimum 5 characters";
     event.preventDefault();
   } else {
-    dataFormModal();
+    saveNewTaskModal();
   }
 };
 
-const dataFormModal = () => {
+const saveNewTaskModal = () => {
   //   console.log(selectedTask);
   tasksData.map((task, index) => {
     // console.log(task);
@@ -186,19 +266,13 @@ const dataFormModal = () => {
 
 // let any = taskCards
 // console.log(any)
+
 const displayTask = () => {
   taskCards.innerHTML = "";
-  tasksData.map((task, index) => {
-    // console.log(typeof task.status);
-    let status =
-      task.status === 0
-        ? "To do"
-        : task.status === 1
-        ? "In Progress"
-        : task.status === 2
-        ? "Review"
-        : "Done";
-    // console.log(status);
+
+  tasksData.reverse().map((task, index) => {
+    let status = STATUS_MAPPING[task.status] || "Unknown status";
+
     return (taskCards.innerHTML += `
         <div 
         id=${index}
