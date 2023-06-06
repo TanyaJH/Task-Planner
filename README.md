@@ -26,4 +26,4 @@ Thanks to the following contributors for their tireless perseverance to overcome
 
 Tanya Heuke, Jed Potter, Felipe Marin.
 
-![](./Images/credits-image.png)
+![](./Images/credits-image-2.png)

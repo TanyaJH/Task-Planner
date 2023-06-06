@@ -123,14 +123,14 @@
                 <label for="task-name" class="form-label two"
                   >In Progress</label
                 >
-                <label for="task-name" class="form-label three">Review</label>
-                <label for="customRange2" class="form-label four">Done</label>
+                <!-- <label for="task-name" class="form-label three">Review</label>
+                <label for="customRange2" class="form-label four">Done</label> -->
               </div>
               <input
                 type="range"
-                class="form-range w-50"
+                class="form-range w-20"
                 min="0"
-                max="3"
+                max="1"
                 id="status-range"
                 value="0"
               />
@@ -148,7 +148,7 @@
       <!-- Card trigger modal -->
       <div
         id="taskCards"
-        class="d-flex justify-content-start mx-auto flex-wrap"
+        class="d-flex justify-content-start mx-auto flex-wrap "
       ></div>
 
       <!-- Modal -->
@@ -172,7 +172,7 @@
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              ></button>
+              ></button>git status
             </div>
             <div class="modal-body">
               <form id="submit-modal" action="/" method="get">
@@ -213,6 +213,7 @@
                   <label for="assigned-to-modal" class="my-3"
                     >Assigned To:</label
                   >
+                  
                   <select id="assigned-to-modal" name="Assigned To:" required>
                     <option value="">Select Victim</option>
                     <option value="Jed">Jed</option>
@@ -265,7 +266,7 @@
                   >
                     Delete Task
                   </button>
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>
@@ -295,3 +296,8 @@
     <script src="./index.js"></script>
   </body>
 </html>
+
+
+
+ <!-- <div class="d-flex justify-content-between">  -->
+  <!-- <div class="btn btn-primary" onClick= doneStatus() type="button" value="Done">Done</div> -->

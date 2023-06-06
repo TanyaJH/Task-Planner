@@ -1,4 +1,4 @@
-//GENERAL VARIABLE
+//GENERAL VARIABLES
 
 const STATUS_MAPPING = {
   0: "To do",
@@ -10,6 +10,8 @@ const STATUS_MAPPING = {
 let errorForm = false;
 
 let tasksData = [];
+
+let selectedTask = 0;
 
 // FORM SELECTORS
 const taskName = document.querySelector("#task-name");
@@ -37,22 +39,18 @@ const statusModal = document.querySelector("#status-range-modal");
 
 const formModal = document.querySelector("#submit-modal");
 
-// ERROR MESSAGE 
+// ERROR MESSAGE SELECTORS
 const errorName = document.getElementById("error-taskName");
 
 const taskCards = document.getElementById("taskCards");
 
-// ERROR 
+// ERROR MESSAGE MODAL SELECTORS
 const errorNameModal = document.getElementById("error-taskName-modal");
-
-const errorDescModal = document.getElementById("error-description-modal");
-
-const taskCardsModal = document.getElementById("taskCards-modal");
 
 // <-- FORM LOGIC -->
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
   saveNewTask();
 });
 
@@ -87,16 +85,16 @@ taskName.addEventListener("input", () => {
     errorName.innerHTML = message;
     errorForm = true;
   } else {
-    errorForm = false;
     errorName.innerHTML = "";
+    errorForm = false;
   }
 });
 
 description.addEventListener("input", () => {
-  const change = document.querySelector("#placeholder");
+  const placeholder = document.querySelector("#placeholder");
   if (!description) {
   }
-  change.style.display = "none";
+  placeholder.style.display = "none";
 
   const lettercount = (document.getElementById("description").onkeyup =
     function () {
@@ -114,60 +112,109 @@ const saveNewTask = () => {
     date: taskDate.value,
     status: parseInt(status.value),
   };
-  tasksData = [...tasksData, newTask];
+  tasksData = [newTask, ...tasksData];
   displayTask();
 
   localStorage.setItem("data", JSON.stringify(tasksData));
   clearFields();
 };
 
-// MODAL
+const doneStatus = (taskDone) => {
+  //   const doneButton = document.getElementById(`done-button-${taskDone}`);
+  //   console.log(doneButton);
+  //   console.log(tasksData);
 
-let selectedTask = 0;
+  tasksData.filter((task, index) => {
+    index === taskDone && (task.status = 3);
+  });
 
-formModal.addEventListener("submit", (event) => {
-  validationModal(event);
-});
+  //   doneButton.setAttribute("disabled", false);
+//   console.log(doneButton);
+  //   doneButton.disabled = true;
+//   console.log(doneButton);
+  //   const button = bootstrap.Button.getOrCreateInstance(doneButton);
+  //   button.toggle();
 
-descriptionModal.addEventListener("submit", () => {
-  const placeholder = document.querySelector("#placeholder-modal");
-
-  placeholder.style.display = "none";
-
-  const lettercount = (document.getElementById("description-modal").onkeyup =
-    function () {
-      document.getElementById(
-        "the-count-modal"
-      ).innerHTML = `${this.value.length} / 250`;
-    });
-});
-
-const validationModal = (event) => {
-  const max = 30;
-  const min = 5;
-
-  const taskNameLength = taskNameModal.value.length;
-
-  let regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
-  let regexDesc = /^.{250}$/;
-
-  if (taskNameLength > max) {
-    errorNameModal.innerText = "This name is too long";
-    event.preventDefault();
-  } else if (!regexTask.test(taskNameModal.value)) {
-    errorNameModal.innerText =
-      "This only accepts characters from A to Z and numbers from 0 - 9";
-    event.preventDefault();
-  } else if (taskNameLength < min) {
-    errorNameModal.innerText = "This name is too short, minimum 5 characters";
-    event.preventDefault();
-  } else {
-    saveNewTaskModal();
-  }
+  localStorage.setItem("data", JSON.stringify(tasksData));
+  displayTask();
 };
 
-const saveNewTaskModal = () => {
-  tasksData.map((task, index) => {
+// MODAL
+
+formModal.addEventListener("submit", (event) => {
+  // event.preventDefault();
+  updateTaskModal(event);
+});
+
+taskNameModal.addEventListener("input", () => {
+  const validateTaskName = (text, minLength, maxLength) => {
+    const regexTask = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9\s]+$/;
+    let validationResult = {
+      error: false,
+      message: "",
+    };
+    if (text.length < minLength) {
+      validationResult.error = true;
+      validationResult.message = `This name is too short, minimum ${minLength} characters`;
+    } else if (text.length > maxLength) {
+      validationResult.error = true;
+      validationResult.message = `This name is too long, maximum ${maxLength} characters`;
+    } else if (!regexTask.test(text)) {
+      validationResult.error = true;
+      validationResult.message = `This only accepts characters from A to Z and numbers from 0 - 9`;
+    }
+
+    return validationResult;
+  };
+
+  const { error, message } = validateTaskName(taskNameModal.value, 5, 30);
+
+  if (error) {
+    errorNameModal.innerHTML = message;
+    errorForm = true;
+  } else {
+    errorNameModal.innerHTML = "";
+    errorForm = false;
+  }
+});
+
+descriptionModal.addEventListener("input", () => {
+  displayPlaceholder();
+});
+
+const letterCount = (document.getElementById("description-modal").onkeyup =
+  function () {
+    document.getElementById(
+      "the-count-modal"
+    ).innerHTML = `${descriptionModal.value.length} / 250`;
+  });
+
+const displayPlaceholder = () => {
+  const placeholderModal = document.querySelector("#placeholder-modal");
+  if (descriptionModal.value === "") {
+    placeholderModal.style.display = "initial";
+  } else {
+    placeholderModal.style.display = "none";
+  }
+  letterCount();
+};
+
+const editTask = (taskPosition) => {
+  selectedTask = taskPosition;
+
+  let task = tasksData[taskPosition];
+
+  taskNameModal.value = task.name;
+  descriptionModal.value = task.description;
+  assignedToModal.value = task.assignedTo;
+  taskDateModal.value = task.date;
+  statusModal.value = task.status;
+
+  displayPlaceholder();
+};
+
+const updateTaskModal = () => {
+  tasksData.filter((task, index) => {
     if (index === selectedTask) {
       task.name = taskNameModal.value;
       task.description = descriptionModal.value;
@@ -181,65 +228,55 @@ const saveNewTaskModal = () => {
   displayTask();
 };
 
+const deleteTask = () => {
+  tasksData.splice(selectedTask, 1);
+  localStorage.setItem("data", JSON.stringify(tasksData));
+  displayTask();
+};
+
 const displayTask = () => {
   taskCards.innerHTML = "";
 
-  tasksData.reverse().map((task, index) => {
+  tasksData.map((task, index) => {
     let status = STATUS_MAPPING[task.status] || "Unknown status";
-
+    const disabled = task.status === 3 ? "disabled" : "";
     return (taskCards.innerHTML += `
         <div 
         id=${index}
-        onClick= editTask(${index})
         style="width: 30%"
-        class="mx-4"
+        class="mx-4 position-relative"
         >
             <button
             type="button"
-            class="btn btn-primary my-3 w-100"
-            data-bs-toggle="modal"
+            onClick= editTask(${index})
             data-bs-target="#staticBackdrop"
-            >
-                <h4 class="text-start w-100">${task.name}</h4>
+            data-bs-toggle="modal"
+            class="btn btn-primary my-3 w-100"
+            > 
+                <h4 class="text-start ">${task.name}</h4>   
                 <h6 class="text-start"><span class="text-warning">Due date:</span> ${task.date}</h6>
                 <h6 class="text-start"><span class="text-warning">Assigned to:</span> ${task.assignedTo}</h6>
                 <h6 class="text-start"><span class="text-warning">Status:</span> ${status}</h6>
             </button>
+            <button 
+            id="done-button-${index}"
+            onclick="doneStatus(${index})" 
+            class="btn btn-primary 
+                bg-warning-subtle 
+                text-black
+                position-absolute 
+                bottom-0
+                end-0 
+                my-4 
+                mx-3"
+            data-bs-toggle="button"
+            ${disabled} 
+            >
+                Done
+            </button>
         </div>
         `);
   });
-};
-
-const editTask = (taskPosition) => {
-  selectedTask = taskPosition;
-  console.log(selectedTask);
-  let task = tasksData[taskPosition];
-  console.log(task);
-
-  taskNameModal.value = task.name;
-  descriptionModal.value = task.description;
-  assignedToModal.value = task.assignedTo;
-  taskDateModal.value = task.date;
-  statusModal.value = task.status;
-
-  const placeholder = document.querySelector("#placeholder-modal");
-  placeholder.style.display = "none";
-
-  const lettercount = (document.getElementById("description-modal").onkeyup =
-    function () {
-      document.getElementById(
-        "the-count-modal"
-      ).innerHTML = `${descriptionModal.value.length} / 250`;
-    });
-
-  lettercount();
-};
-
-const deleteTask = () => {
-  
-  tasksData.splice(selectedTask, 1);
-  localStorage.setItem("data", JSON.stringify(tasksData));
-  displayTask();
 };
 
 (() => {
