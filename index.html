@@ -38,6 +38,19 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item">
+                <input
+                  class="form-control me-2 w-10"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+              </li>
+              <li class="nav-item">
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
@@ -123,14 +136,14 @@
                 <label for="task-name" class="form-label two"
                   >In Progress</label
                 >
-                <!-- <label for="task-name" class="form-label three">Review</label>
-                <label for="customRange2" class="form-label four">Done</label> -->
+                <label for="task-name" class="form-label three">Review</label>
+                <!-- <label for="customRange2" class="form-label four">Done</label> -->
               </div>
               <input
                 type="range"
-                class="form-range w-20"
+                class="form-range w-50"
                 min="0"
-                max="1"
+                max="2"
                 id="status-range"
                 value="0"
               />
@@ -138,7 +151,7 @@
               <br />
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">SUBMIT</button>
+              <button type="submit" class="btn btn-primary">ADD TASK</button>
             </div>
           </div>
         </form>
@@ -146,10 +159,12 @@
       <hr />
 
       <!-- Card trigger modal -->
-      <div
-        id="taskCards"
-        class="d-flex justify-content-start mx-auto flex-wrap "
-      ></div>
+      <div class="d-flex flex-row justify-content-center overflow-x-scroll">
+        <div id="taskCards-0" class="mx-0 d-flex-column justify-content-center w-100"></div>
+        <div id="taskCards-1" class="mx-auto d-flex-column justify-content-center w-100"></div>
+        <div id="taskCards-2" class="mx-auto d-flex-column justify-content-center w-100"></div>
+        <div id="taskCards-3" class="mx-auto d-flex-column justify-content-center w-100"></div>
+      </div>
 
       <!-- Modal -->
       <div
@@ -172,7 +187,7 @@
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              ></button>git status
+              ></button>
             </div>
             <div class="modal-body">
               <form id="submit-modal" action="/" method="get">
@@ -213,7 +228,7 @@
                   <label for="assigned-to-modal" class="my-3"
                     >Assigned To:</label
                   >
-                  
+
                   <select id="assigned-to-modal" name="Assigned To:" required>
                     <option value="">Select Victim</option>
                     <option value="Jed">Jed</option>
@@ -297,7 +312,5 @@
   </body>
 </html>
 
-
-
- <!-- <div class="d-flex justify-content-between">  -->
-  <!-- <div class="btn btn-primary" onClick= doneStatus() type="button" value="Done">Done</div> -->
+<!-- <div class="d-flex justify-content-between">  -->
+<!-- <div class="btn btn-primary" onClick= doneStatus() type="button" value="Done">Done</div> -->

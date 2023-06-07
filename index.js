@@ -42,7 +42,10 @@ const formModal = document.querySelector("#submit-modal");
 // ERROR MESSAGE SELECTORS
 const errorName = document.getElementById("error-taskName");
 
-const taskCards = document.getElementById("taskCards");
+// const taskCards_0 = document.getElementById("taskCards-0");
+// const taskCards_1 = document.getElementById("taskCards-1");
+// const taskCards_2 = document.getElementById("taskCards-2");
+// const taskCards_3 = document.getElementById("taskCards-3");
 
 // ERROR MESSAGE MODAL SELECTORS
 const errorNameModal = document.getElementById("error-taskName-modal");
@@ -79,7 +82,7 @@ taskName.addEventListener("input", () => {
     return validationResult;
   };
 
-  const { error, message } = validateTaskName(taskName.value, 5, 30);
+  const { error, message } = validateTaskName(taskName.value, 5, 25);
 
   if (error) {
     errorName.innerHTML = message;
@@ -129,14 +132,14 @@ const doneStatus = (taskDone) => {
   });
 
   //   doneButton.setAttribute("disabled", false);
-//   console.log(doneButton);
+  //   console.log(doneButton);
   //   doneButton.disabled = true;
-//   console.log(doneButton);
+  //   console.log(doneButton);
   //   const button = bootstrap.Button.getOrCreateInstance(doneButton);
   //   button.toggle();
 
-  localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
+  localStorage.setItem("data", JSON.stringify(tasksData));
 };
 
 // MODAL
@@ -167,7 +170,7 @@ taskNameModal.addEventListener("input", () => {
     return validationResult;
   };
 
-  const { error, message } = validateTaskName(taskNameModal.value, 5, 30);
+  const { error, message } = validateTaskName(taskNameModal.value, 5, 25);
 
   if (error) {
     errorNameModal.innerHTML = message;
@@ -235,16 +238,22 @@ const deleteTask = () => {
 };
 
 const displayTask = () => {
-  taskCards.innerHTML = "";
-
+    // taskCards.innerHTML = "";
+  if (tasksData == "") {
+    return;
+  }
   tasksData.map((task, index) => {
     let status = STATUS_MAPPING[task.status] || "Unknown status";
+    const taskCards = document.getElementById(`taskCards-${task.status}`);
+    // const taskCard = `${taskCards}-${task.status}`;
+    // console.log(taskCard);
+    console.log(task.status);
     const disabled = task.status === 3 ? "disabled" : "";
     return (taskCards.innerHTML += `
         <div 
         id=${index}
-        style="width: 30%"
-        class="mx-4 position-relative"
+        style="width: 400px; word-wrap:break-word "
+        class="mx-4 position-relative "
         >
             <button
             type="button"
