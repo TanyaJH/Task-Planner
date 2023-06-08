@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 /* header{
     background-color: aqua;
     display: flex;
@@ -49,26 +48,12 @@ header li{
   width: 44%;
 }
 
-/* div.scrollmenu {
-overflow: auto;
-} */
-
-.addTask form .two {
-  /* padding: 0 6%; */
-}
-
-.addTask form .three {
-  /* padding: 0 6%; */
-}
-
 main {
   background-color: rgb(167, 163, 163);
   min-height: calc(100vh - 112px);
 }
 small {
   color: red;
-  
-  
 }
 
 main button {
@@ -113,8 +98,4 @@ footer {
 }
 #uncopyright p {
   padding-bottom: 0 !important;
-}
-
-.form-label {
-  
 }

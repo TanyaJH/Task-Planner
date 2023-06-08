@@ -11,7 +11,14 @@ let errorForm = false;
 
 let tasksData = [];
 
+let taskSearchData = [];
+
 let selectedTask = 0;
+
+// SEARCH SELECTORS
+
+const search = document.querySelector("#search");
+console.log(search);
 
 // FORM SELECTORS
 const taskName = document.querySelector("#task-name");
@@ -26,6 +33,10 @@ const status = document.querySelector("#status-range");
 
 const form = document.querySelector("#submit");
 
+// TASK SELECTORS
+const taskButton = document.getElementsByClassName("task-button");
+console.log(taskButton);
+
 // MODAL SELECTORS
 const taskNameModal = document.querySelector("#task-name-modal");
 
@@ -39,16 +50,61 @@ const statusModal = document.querySelector("#status-range-modal");
 
 const formModal = document.querySelector("#submit-modal");
 
+const editTaskModal = new bootstrap.Modal(
+  document.getElementById("staticBackdrop")
+);
+
 // ERROR MESSAGE SELECTORS
 const errorName = document.getElementById("error-taskName");
 
-// const taskCards_0 = document.getElementById("taskCards-0");
-// const taskCards_1 = document.getElementById("taskCards-1");
-// const taskCards_2 = document.getElementById("taskCards-2");
-// const taskCards_3 = document.getElementById("taskCards-3");
-
 // ERROR MESSAGE MODAL SELECTORS
 const errorNameModal = document.getElementById("error-taskName-modal");
+
+// <-- SEARCH LOGIC -->
+
+search.addEventListener("input", (event) => {
+  let input, filter, ul, li, a, i, txtValue, isVisible;
+  taskSearchData = []
+  input = search.value.toUpperCase();
+  console.log(tasksData);
+
+  tasksData.forEach((task, index) => {
+    // console.log(task);
+    console.log(taskButton[index]);
+    isVisible=task.name.includes(input) || task.assignedTo.includes(input)
+    console.log(isVisible)
+    // taskButton[index].element.classList.toggle("hide", !isVisible )
+
+    const newTask = {
+        name: task.name,
+        description:task.description,
+        assignedTo: task.assignedTo,
+        date: task.taskDate,
+        status: parseInt(task.status),
+      };
+      console.log(isVisible);
+    //   isVisible && (taskSearchData = [...taskSearchData, newTask ]);
+    //   isVisible && (taskSearchData = [...taskSearchData, newTask ]);
+
+      console.log(taskSearchData)
+  });
+
+//   ul = document.getElementById("myUL");
+//   li = ul.getElementsByTagName("li");
+
+//   // Loop through all list items, and hide those who don't match the search query
+//   for (i = 0; i < li.length; i++) {
+//     a = li[i].getElementsByTagName("a")[0];
+//     txtValue = a.textContent || a.innerText;
+//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//       li[i].style.display = "";
+//     } else {
+//       li[i].style.display = "none";
+//     }
+//   }
+});
+
+// Declare variables
 
 // <-- FORM LOGIC -->
 
@@ -82,7 +138,7 @@ taskName.addEventListener("input", () => {
     return validationResult;
   };
 
-  const { error, message } = validateTaskName(taskName.value, 5, 25);
+  const { error, message } = validateTaskName(taskName.value, 5, 30);
 
   if (error) {
     errorName.innerHTML = message;
@@ -126,11 +182,11 @@ const doneStatus = (taskDone) => {
   //   const doneButton = document.getElementById(`done-button-${taskDone}`);
   //   console.log(doneButton);
   //   console.log(tasksData);
-
+  console.log(taskDone);
   tasksData.filter((task, index) => {
     // index === taskDone && (task.status = 3);
     if (index === taskDone) {
-      task.status = 3;
+      task.status = parseInt(3);
     }
   });
 
@@ -147,11 +203,9 @@ const doneStatus = (taskDone) => {
 
 // MODAL
 
-formModal.addEventListener("submit", (event) => {
-  // event.preventDefault();
-  updateTaskModal(event);
-  taskDone.click();
-});
+const updateInfoTask = () => {
+  updateTaskModal();
+};
 
 taskNameModal.addEventListener("input", () => {
   const validateTaskName = (text, minLength, maxLength) => {
@@ -174,7 +228,7 @@ taskNameModal.addEventListener("input", () => {
     return validationResult;
   };
 
-  const { error, message } = validateTaskName(taskNameModal.value, 5, 25);
+  const { error, message } = validateTaskName(taskNameModal.value, 5, 30);
 
   if (error) {
     errorNameModal.innerHTML = message;
@@ -232,6 +286,7 @@ const updateTaskModal = () => {
   });
 
   localStorage.setItem("data", JSON.stringify(tasksData));
+  editTaskModal.hide();
   displayTask();
 };
 
@@ -257,8 +312,8 @@ const displayTask = () => {
     return (taskCards.innerHTML += `
         <div 
         id=${index}
-        style="width: 400px; word-wrap:break-word "
-        class="mx-4 position-relative "
+        style="width: 275px; word-wrap:break-word "
+        class="mx-4 position-relative task-button"
         >
             <button
             type="button"
@@ -267,10 +322,10 @@ const displayTask = () => {
             data-bs-toggle="modal"
             class="btn btn-primary my-3 border-0 w-100"
             > 
-                <h4 class="text-start ">${task.name}</h4>   
-                <h6 class="text-start"><span class="text-warning">Due date:</span> ${task.date}</h6>
-                <h6 class="text-start"><span class="text-warning">Assigned to:</span> ${task.assignedTo}</h6>
-                <h6 class="text-start"><span class="text-warning">Status:</span> ${status}</h6>
+                <h4 class="text-start  " style="height: 65px;">${task.name}</h4>   
+                <h6 class="text-start "><span class="text-warning" style="width: 95px;">Due date: &emsp;</span> ${task.date}</h6>
+                <h6 class="text-start"><span class="text-warning" style="width: 95px;">Assigned to:</span> ${task.assignedTo}</h6>
+                <h6 class="text-start"><span class="text-warning">Status: &emsp; &emsp;</span> ${status}</h6>
             </button>
             <button 
             id="done-button-${index}"

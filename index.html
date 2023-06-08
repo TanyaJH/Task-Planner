@@ -12,9 +12,9 @@
       crossorigin="anonymous"
     />
     <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-  />
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
     <title>POSTasker</title>
   </head>
 
@@ -43,16 +43,20 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <input
+                  id="search"
                   class="form-control me-2 w-10"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                 />
-                
               </li>
               <li class="nav-item">
                 <button class="btn btn-outline-primary" type="submit">
-                  <i class="bi bi-binoculars-fill" style="font-size: 1rem";></i>
+                  <i
+                    class="bi bi-binoculars-fill"
+                    style="font-size: 1rem"
+                    ;
+                  ></i>
                 </button>
               </li>
               <li class="nav-item">
@@ -75,7 +79,7 @@
     <main>
       <!-- Add task form -->
       <div class="addTask">
-        <form id="submit" action="/" method="get">
+        <form id="submit">
           <div class="modal-content bg-body-primary">
             <div class="modal-header">
               <h1 class="modal-title fs-5 my-3" id="staticBackdropLabel">
@@ -88,7 +92,7 @@
                 <br />
                 <strong><small id="error-taskName"></small></strong>
                 <input
-                  placeholder="Give a name to the task"
+                  placeholder="Insert task title"
                   type="task-name"
                   class="form-control"
                   id="task-name"
@@ -107,7 +111,7 @@
                   required
                 ></textarea>
                 <label id="placeholder" for="description"
-                  >Describe the task here...</label
+                  >Task description</label
                 >
                 <div id="the-count" class="position-absolute end-0">
                   <span id="current">0</span>
@@ -115,7 +119,9 @@
                 </div>
               </div>
               <div>
-                <label for="assigned-to" class="my-3">Assigned To:</label>
+                <label for="assigned-to" class="my-3" style="width: 120px"
+                  >Assigned To:</label
+                >
                 <select id="assigned-to" name="Assigned To:" required>
                   <option value="">Select Victim</option>
                   <option value="Jed">Jed</option>
@@ -125,10 +131,15 @@
                   <option value="Clarice">Clarice</option>
                   <option value="Margaret">Margaret</option>
                   <option value="Spirit">Spirit</option>
+                  <option value="Spaceman">Spaceman</option>
+                  <option value="Cowgirl">Margaret</option>
+                  <option value="Dragon">Dragon</option>
                 </select>
               </div>
               <div>
-                <label for="due-date" class="mb-2" required>Due Date:</label>
+                <label for="due-date" class="mb-2" style="width: 120px" required
+                  >Due Date:</label
+                >
                 <input
                   id="taskDate"
                   type="date"
@@ -160,7 +171,9 @@
               <br />
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn border-0 btn-primary">ADD TASK</button>
+              <button type="submit" class="btn border-0 btn-primary">
+                ADD TASK
+              </button>
             </div>
           </div>
         </form>
@@ -168,18 +181,24 @@
       <hr />
 
       <!-- Card trigger modal -->
-      <div class="d-flex flex-row justify-content-center container-fluid overflow-x-scroll">
-        <div id="taskCards-0" class="mx-0 d-flex-column justify-content-center w-100">
-          <h2 class="bg-warning w-50  rounded-2 container text-center">To Do</h2>
+      <div
+        class="d-flex flex-row justify-content-center container-fluid overflow-x-scroll"
+      >
+        <div id="taskCards-0" class="d-flex-column justify-content-center">
+          <h2 class="bg-warning w-75 rounded-2 container text-center">To Do</h2>
         </div>
-        <div id="taskCards-1" class="mx-auto d-flex-column justify-content-center w-100">
-          <h2 class="bg-warning w-50  rounded-2 container text-center">In Progress</h2>
+        <div id="taskCards-1" class="d-flex-column justify-content-center">
+          <h2 class="bg-warning w-75 rounded-2 container text-center">
+            In Progress
+          </h2>
         </div>
-        <div id="taskCards-2" class="mx-auto d-flex-column justify-content-center w-100">
-          <h2 class="bg-warning w-50  rounded-2 container text-center">Review</h2>
+        <div id="taskCards-2" class="d-flex-column justify-content-center">
+          <h2 class="bg-warning w-75 rounded-2 container text-center">
+            Review
+          </h2>
         </div>
-        <div id="taskCards-3" class="mx-auto d-flex-column justify-content-center w-100">
-          <h2 class="bg-warning w-50  rounded-2 container text-center">Done</h2>
+        <div id="taskCards-3" class="d-flex-column justify-content-center">
+          <h2 class="bg-warning w-75 rounded-2 container text-center">Done</h2>
         </div>
       </div>
 
@@ -207,11 +226,11 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form id="submit-modal" action="/" method="get">
+              <form id="submit-modal">
                 <div class="mb-3">
                   <label for="task-name-modal" class="form-label"
-                    >Task Name:</label
-                  >
+                    >Task Name:
+                  </label>
                   <br />
                   <strong><small id="error-taskName-modal"></small></strong>
                   <input
@@ -242,23 +261,33 @@
                   </div>
                 </div>
                 <div>
-                  <label for="assigned-to-modal" class="my-3"
+                  <label
+                    for="assigned-to-modal"
+                    class="my-3"
+                    style="width: 120px"
                     >Assigned To:</label
                   >
 
                   <select id="assigned-to-modal" name="Assigned To:" required>
                     <option value="">Select Victim</option>
+                    <option value="Tanya">Tanya</option>
                     <option value="Jed">Jed</option>
                     <option value="Felipe">Felipe</option>
-                    <option value="Tanya">Tanya</option>
                     <option value="Charlie">Charlie</option>
                     <option value="Clarice">Clarice</option>
                     <option value="Margaret">Margaret</option>
                     <option value="Spirit">Spirit</option>
+                    <option value="Spaceman">Spaceman</option>
+                    <option value="Cowgirl">Margaret</option>
+                    <option value="Dragon">Dragon</option>
                   </select>
                 </div>
                 <div>
-                  <label for="due-date-modal" class="mb-2" required
+                  <label
+                    for="due-date-modal"
+                    class="mb-2"
+                    style="width: 120px"
+                    required
                     >Due Date:</label
                   >
                   <input
@@ -302,7 +331,13 @@
                   >
                     Delete Task
                   </button>
-                  <button type="submit" class="btn border-0 btn-primary">Update</button>
+                  <button
+                    type="button"
+                    class="btn border-0 btn-primary"
+                    onclick="updateInfoTask()"
+                  >
+                    Update
+                  </button>
                 </div>
               </form>
             </div>
