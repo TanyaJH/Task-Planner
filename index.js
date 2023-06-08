@@ -11,14 +11,11 @@ let errorForm = false;
 
 let tasksData = [];
 
-let taskSearchData = [];
-
 let selectedTask = 0;
 
 // SEARCH SELECTORS
 
 const search = document.querySelector("#search");
-console.log(search);
 
 // FORM SELECTORS
 const taskName = document.querySelector("#task-name");
@@ -32,10 +29,6 @@ const taskDate = document.querySelector("#taskDate");
 const status = document.querySelector("#status-range");
 
 const form = document.querySelector("#submit");
-
-// TASK SELECTORS
-const taskButton = document.getElementsByClassName("task-button");
-console.log(taskButton);
 
 // MODAL SELECTORS
 const taskNameModal = document.querySelector("#task-name-modal");
@@ -63,48 +56,20 @@ const errorNameModal = document.getElementById("error-taskName-modal");
 // <-- SEARCH LOGIC -->
 
 search.addEventListener("input", (event) => {
-  let input, filter, ul, li, a, i, txtValue, isVisible;
-  taskSearchData = []
-  input = search.value.toUpperCase();
-  console.log(tasksData);
+  let input, isVisible;
+
+  input = event.target.value.toLowerCase();
 
   tasksData.forEach((task, index) => {
-    // console.log(task);
-    console.log(taskButton[index]);
-    isVisible=task.name.includes(input) || task.assignedTo.includes(input)
-    console.log(isVisible)
-    // taskButton[index].element.classList.toggle("hide", !isVisible )
+    const taskButton = document.querySelector(`.task-button-${index}`);
 
-    const newTask = {
-        name: task.name,
-        description:task.description,
-        assignedTo: task.assignedTo,
-        date: task.taskDate,
-        status: parseInt(task.status),
-      };
-      console.log(isVisible);
-    //   isVisible && (taskSearchData = [...taskSearchData, newTask ]);
-    //   isVisible && (taskSearchData = [...taskSearchData, newTask ]);
+    isVisible =
+      task.name.toLowerCase().includes(input) ||
+      task.assignedTo.toLowerCase().includes(input);
 
-      console.log(taskSearchData)
+    taskButton.classList.toggle("d-none", !isVisible);
   });
-
-//   ul = document.getElementById("myUL");
-//   li = ul.getElementsByTagName("li");
-
-//   // Loop through all list items, and hide those who don't match the search query
-//   for (i = 0; i < li.length; i++) {
-//     a = li[i].getElementsByTagName("a")[0];
-//     txtValue = a.textContent || a.innerText;
-//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//       li[i].style.display = "";
-//     } else {
-//       li[i].style.display = "none";
-//     }
-//   }
 });
-
-// Declare variables
 
 // <-- FORM LOGIC -->
 
@@ -116,6 +81,12 @@ form.addEventListener("submit", (event) => {
 const clearFields = () => {
   form.reset();
 };
+
+class ResetSearch {
+  clearInput(search) {
+    return (search.value = "");
+  }
+}
 
 taskName.addEventListener("input", () => {
   const validateTaskName = (text, minLength, maxLength) => {
@@ -175,30 +146,21 @@ const saveNewTask = () => {
   displayTask();
 
   localStorage.setItem("data", JSON.stringify(tasksData));
+
   clearFields();
+  new ResetSearch().clearInput(search);
 };
 
 const doneStatus = (taskDone) => {
-  //   const doneButton = document.getElementById(`done-button-${taskDone}`);
-  //   console.log(doneButton);
-  //   console.log(tasksData);
   console.log(taskDone);
   tasksData.filter((task, index) => {
-    // index === taskDone && (task.status = 3);
-    if (index === taskDone) {
-      task.status = parseInt(3);
-    }
+    index === taskDone && (task.status = 3);
   });
-
-  //   doneButton.setAttribute("disabled", false);
-  //   console.log(doneButton);
-  //   doneButton.disabled = true;
-  //   console.log(doneButton);
-  //   const button = bootstrap.Button.getOrCreateInstance(doneButton);
-  //   button.toggle();
 
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
+  ResetSearch().search;
+  new ResetSearch().clearInput(search);
 };
 
 // MODAL
@@ -288,32 +250,30 @@ const updateTaskModal = () => {
   localStorage.setItem("data", JSON.stringify(tasksData));
   editTaskModal.hide();
   displayTask();
+  new ResetSearch().clearInput(search);
 };
 
 const deleteTask = () => {
   tasksData.splice(selectedTask, 1);
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
+  new ResetSearch().clearInput(search);
 };
 
 const displayTask = () => {
-  // taskCards.innerHTML = "";
   if (tasksData == "") {
     return;
   }
   tasksData.map((task, index) => {
     let status = STATUS_MAPPING[task.status] || "Unknown status";
     const taskCards = document.getElementById(`taskCards-${task.status}`);
-    // const taskCard = `${taskCards}-${task.status}`;
-    // console.log(taskCard);
-    console.log(task.status);
-    // const disabled = task.status === 3 ? "disabled" : "";
+
     const disabled = task.status === 3 ? "d-none" : "";
     return (taskCards.innerHTML += `
         <div 
         id=${index}
         style="width: 275px; word-wrap:break-word "
-        class="mx-4 position-relative task-button"
+        class="mx-4 position-relative task-button-${index}"
         >
             <button
             type="button"

@@ -30,5 +30,6 @@ Tanya 'cowgirl' Heuke, Jed 'dragon' Potter, Felipe 'spaceman' Marin and the houn
 ![](./Images/Jed.JPG)
 ![](./Images/Felipe.JPG)
 ![](./Images/Clarice&Spirit.jpg)
+![](./Images/Maggie&Charlie.jpg)
 
 

@@ -49,7 +49,8 @@ header li{
 }
 
 main {
-  background-color: rgb(167, 163, 163);
+  background-color: #94876c;
+  background-image: url("https://www.transparenttextures.com/patterns/old-map.png");
   min-height: calc(100vh - 112px);
 }
 small {
