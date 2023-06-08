@@ -128,7 +128,10 @@ const doneStatus = (taskDone) => {
   //   console.log(tasksData);
 
   tasksData.filter((task, index) => {
-    index === taskDone && (task.status = 3);
+    // index === taskDone && (task.status = 3);
+    if (index === taskDone) {
+      task.status = 3;
+    }
   });
 
   //   doneButton.setAttribute("disabled", false);
@@ -138,8 +141,8 @@ const doneStatus = (taskDone) => {
   //   const button = bootstrap.Button.getOrCreateInstance(doneButton);
   //   button.toggle();
 
-  displayTask();
   localStorage.setItem("data", JSON.stringify(tasksData));
+  displayTask();
 };
 
 // MODAL
@@ -147,6 +150,7 @@ const doneStatus = (taskDone) => {
 formModal.addEventListener("submit", (event) => {
   // event.preventDefault();
   updateTaskModal(event);
+  taskDone.click();
 });
 
 taskNameModal.addEventListener("input", () => {
@@ -238,7 +242,7 @@ const deleteTask = () => {
 };
 
 const displayTask = () => {
-    // taskCards.innerHTML = "";
+  // taskCards.innerHTML = "";
   if (tasksData == "") {
     return;
   }
@@ -248,7 +252,8 @@ const displayTask = () => {
     // const taskCard = `${taskCards}-${task.status}`;
     // console.log(taskCard);
     console.log(task.status);
-    const disabled = task.status === 3 ? "disabled" : "";
+    // const disabled = task.status === 3 ? "disabled" : "";
+    const disabled = task.status === 3 ? "d-none" : "";
     return (taskCards.innerHTML += `
         <div 
         id=${index}
@@ -260,7 +265,7 @@ const displayTask = () => {
             onClick= editTask(${index})
             data-bs-target="#staticBackdrop"
             data-bs-toggle="modal"
-            class="btn btn-primary my-3 w-100"
+            class="btn btn-primary my-3 border-0 w-100"
             > 
                 <h4 class="text-start ">${task.name}</h4>   
                 <h6 class="text-start"><span class="text-warning">Due date:</span> ${task.date}</h6>
@@ -269,19 +274,20 @@ const displayTask = () => {
             </button>
             <button 
             id="done-button-${index}"
-            onclick="doneStatus(${index})" 
-            class="btn btn-primary 
-                bg-warning-subtle 
-                text-black
+            onClick="doneStatus(${index})" 
+            class="border-0 
+            bg-warning-emphasis 
+            text-warning
                 position-absolute 
                 bottom-0
                 end-0 
                 my-4 
-                mx-3"
+                mx-3
+                ${disabled} 
+                "
             data-bs-toggle="button"
-            ${disabled} 
             >
-                Done
+            <i class="bi bi-check2-circle" style="font-size: 2.5rem";></i>
             </button>
         </div>
         `);

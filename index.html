@@ -11,6 +11,10 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  />
     <title>POSTasker</title>
   </head>
 
@@ -44,10 +48,11 @@
                   placeholder="Search"
                   aria-label="Search"
                 />
+                
               </li>
               <li class="nav-item">
-                <button class="btn btn-outline-success" type="submit">
-                  Search
+                <button class="btn btn-outline-primary" type="submit">
+                  <i class="bi bi-binoculars-fill" style="font-size: 1rem";></i>
                 </button>
               </li>
               <li class="nav-item">
@@ -116,6 +121,10 @@
                   <option value="Jed">Jed</option>
                   <option value="Felipe">Felipe</option>
                   <option value="Tanya">Tanya</option>
+                  <option value="Charlie">Charlie</option>
+                  <option value="Clarice">Clarice</option>
+                  <option value="Margaret">Margaret</option>
+                  <option value="Spirit">Spirit</option>
                 </select>
               </div>
               <div>
@@ -151,7 +160,7 @@
               <br />
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">ADD TASK</button>
+              <button type="submit" class="btn border-0 btn-primary">ADD TASK</button>
             </div>
           </div>
         </form>
@@ -159,11 +168,19 @@
       <hr />
 
       <!-- Card trigger modal -->
-      <div class="d-flex flex-row justify-content-center overflow-x-scroll">
-        <div id="taskCards-0" class="mx-0 d-flex-column justify-content-center w-100"></div>
-        <div id="taskCards-1" class="mx-auto d-flex-column justify-content-center w-100"></div>
-        <div id="taskCards-2" class="mx-auto d-flex-column justify-content-center w-100"></div>
-        <div id="taskCards-3" class="mx-auto d-flex-column justify-content-center w-100"></div>
+      <div class="d-flex flex-row justify-content-center container-fluid overflow-x-scroll">
+        <div id="taskCards-0" class="mx-0 d-flex-column justify-content-center w-100">
+          <h2 class="bg-warning w-50  rounded-2 container text-center">To Do</h2>
+        </div>
+        <div id="taskCards-1" class="mx-auto d-flex-column justify-content-center w-100">
+          <h2 class="bg-warning w-50  rounded-2 container text-center">In Progress</h2>
+        </div>
+        <div id="taskCards-2" class="mx-auto d-flex-column justify-content-center w-100">
+          <h2 class="bg-warning w-50  rounded-2 container text-center">Review</h2>
+        </div>
+        <div id="taskCards-3" class="mx-auto d-flex-column justify-content-center w-100">
+          <h2 class="bg-warning w-50  rounded-2 container text-center">Done</h2>
+        </div>
       </div>
 
       <!-- Modal -->
@@ -234,6 +251,10 @@
                     <option value="Jed">Jed</option>
                     <option value="Felipe">Felipe</option>
                     <option value="Tanya">Tanya</option>
+                    <option value="Charlie">Charlie</option>
+                    <option value="Clarice">Clarice</option>
+                    <option value="Margaret">Margaret</option>
+                    <option value="Spirit">Spirit</option>
                   </select>
                 </div>
                 <div>
@@ -275,13 +296,13 @@
                 <div class="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-secondary close bg-secondary"
+                    class="btn btn-secondary close bg-secondary border-0"
                     data-bs-dismiss="modal"
                     onclick="deleteTask()"
                   >
                     Delete Task
                   </button>
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn border-0 btn-primary">Update</button>
                 </div>
               </form>
             </div>
