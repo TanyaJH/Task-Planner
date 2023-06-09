@@ -145,12 +145,15 @@ const saveNewTask = () => {
     status: parseInt(status.value),
   };
   tasksData = [newTask, ...tasksData];
+  
+  
+  localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
 
-  localStorage.setItem("data", JSON.stringify(tasksData));
 
   clearFields();
   new ResetSearch().clearInput(search);
+  window.location.reload()
 };
 
 const doneStatus = (taskDone) => {
@@ -161,8 +164,9 @@ const doneStatus = (taskDone) => {
 
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
-  ResetSearch().search;
+  
   new ResetSearch().clearInput(search);
+  window.location.reload()
 };
 
 // MODAL
@@ -253,6 +257,7 @@ const updateTaskModal = () => {
   editTaskModal.hide();
   displayTask();
   new ResetSearch().clearInput(search);
+  window.location.reload()
 };
 
 const deleteTask = () => {
@@ -260,6 +265,7 @@ const deleteTask = () => {
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
   new ResetSearch().clearInput(search);
+  window.location.reload()
 };
 
 const displayTask = () => {
