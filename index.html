@@ -42,7 +42,6 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item d-flex bg-body rounded">
-                <!-- <button class="btn btn-outline-primary" type="button"> -->
                 <span
                   class="input-group-text bg-body border-0"
                   id="basic-addon1"
@@ -52,12 +51,7 @@
                     ;
                   ></i
                 ></span>
-                <!-- <i
-                    class="bi bi-binoculars-fill fs-4"
-                    style="font-size: 1rem"
-                    ;
-                  ></i> -->
-                <!-- </button> -->
+
                 <input
                   id="search"
                   class="form-control border-0"
@@ -67,9 +61,7 @@
                 />
               </li>
               <li class="nav-item"></li>
-              <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li> -->
+
               <li class="nav-item">
                 <a class="nav-link" href="#">Log In</a>
               </li>
@@ -165,7 +157,6 @@
                   >In Progress</label
                 >
                 <label for="task-name" class="form-label three">Review</label>
-                <!-- <label for="customRange2" class="form-label four">Done</label> -->
               </div>
               <input
                 type="range"
@@ -190,12 +181,11 @@
 
       <!-- Card trigger modal -->
       <div
-        class="d-flex flex-row justify-content-center container-fluid overflow-x-scroll px-0"
+        class="d-flex flex-row justify-content-center container-fluid d-wrap overflow-x-scroll px-0"
       >
         <div
-          id="taskCards-0"
-          class="d-flex-column justify-content-center"
-          style="width: 320px; height: auto;"
+          class="d-flex-column justify-content-center tasksContainer"
+          style="width: 320px; height: 1024px"
         >
           <h2
             class="bg-warning rounded-2 container text-center sticky-top"
@@ -203,11 +193,11 @@
           >
             To Do
           </h2>
+          <div id="taskCards-0" class="taskDiv"></div>
         </div>
         <div
-          id="taskCards-1"
-          class="d-flex-column justify-content-center"
-          style="width: 320px;"
+          class="d-flex-column justify-content-center tasksContainer"
+          style="width: 320px; height: 1024px"
         >
           <h2
             class="bg-warning rounded-2 container text-center sticky-top"
@@ -215,11 +205,11 @@
           >
             In Progress
           </h2>
+          <div id="taskCards-1" class="taskDiv"></div>
         </div>
         <div
-          id="taskCards-2"
-          class="d-flex-column justify-content-center"
-          style="width: 320px;"
+          class="d-flex-column justify-content-center tasksContainer"
+          style="width: 320px; height: 1024px"
         >
           <h2
             class="bg-warning rounded-2 container text-center sticky-top"
@@ -227,18 +217,19 @@
           >
             Review
           </h2>
+          <div id="taskCards-2" class="taskDiv"></div>
         </div>
         <div
-          id="taskCards-3"
-          class="d-flex-column justify-content-center"
-          style="width: 320px;"
+          class="d-flex-column justify-content-center tasksContainer"
+          style="width: 320px; height: 1050px"
         >
           <h2
-            class="bg-warning rounded-2 container text-center "
+            class="bg-warning rounded-2 container text-center sticky-top"
             style="width: 242px; height: 38px"
           >
             Done
           </h2>
+          <div id="taskCards-3" class="taskDiv"></div>
         </div>
       </div>
 
@@ -407,4 +398,3 @@
     <script src="./index.js"></script>
   </body>
 </html>
-

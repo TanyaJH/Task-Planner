@@ -30,6 +30,10 @@ const status = document.querySelector("#status-range");
 
 const form = document.querySelector("#submit");
 
+// TASKS CONTAINER SELECTORS
+
+const taskDiv = document.querySelectorAll(`.taskDiv`);
+
 // MODAL SELECTORS
 const taskNameModal = document.querySelector("#task-name-modal");
 
@@ -40,6 +44,8 @@ const assignedToModal = document.querySelector("#assigned-to-modal");
 const taskDateModal = document.querySelector("#taskDate-modal");
 
 const statusModal = document.querySelector("#status-range-modal");
+
+const tasksContainer = document.querySelector(".tasksContainer");
 
 const formModal = document.querySelector("#submit-modal");
 
@@ -87,8 +93,6 @@ form.addEventListener("submit", (event) => {
 const clearFields = () => {
   form.reset();
 };
-
-
 
 taskName.addEventListener("input", () => {
   const validateTaskName = (text, minLength, maxLength) => {
@@ -145,28 +149,23 @@ const saveNewTask = () => {
     status: parseInt(status.value),
   };
   tasksData = [newTask, ...tasksData];
-  
-  
+
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
 
-
   clearFields();
   new ResetSearch().clearInput(search);
-  window.location.reload()
 };
 
 const doneStatus = (taskDone) => {
-  console.log(taskDone);
   tasksData.filter((task, index) => {
     index === taskDone && (task.status = 3);
   });
 
   localStorage.setItem("data", JSON.stringify(tasksData));
   displayTask();
-  
+
   new ResetSearch().clearInput(search);
-  window.location.reload()
 };
 
 // MODAL
@@ -257,21 +256,25 @@ const updateTaskModal = () => {
   editTaskModal.hide();
   displayTask();
   new ResetSearch().clearInput(search);
-  window.location.reload()
 };
 
 const deleteTask = () => {
   tasksData.splice(selectedTask, 1);
+
   localStorage.setItem("data", JSON.stringify(tasksData));
+
   displayTask();
+
   new ResetSearch().clearInput(search);
-  window.location.reload()
 };
 
 const displayTask = () => {
-  if (tasksData == "") {
+  if (tasksData === "") {
     return;
   }
+
+  taskDiv.forEach((div) => (div.innerHTML = ""));
+
   tasksData.map((task, index) => {
     let status = STATUS_MAPPING[task.status] || "Unknown status";
     const taskCards = document.getElementById(`taskCards-${task.status}`);
@@ -281,7 +284,7 @@ const displayTask = () => {
         <div 
         id=${index}
         style="width: 275px; word-wrap:break-word "
-        class="mx-4 position-relative task-button-${index}"
+        class="mx-4 position-relative task-button-${index} taskButton"
         >
             <button
             type="button"

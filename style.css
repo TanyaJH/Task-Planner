@@ -14,7 +14,6 @@
 
 .addTask form {
   position: static;
-
   margin-left: 3rem;
   margin-right: 3rem;
   justify-items: center;
@@ -29,6 +28,7 @@ main {
   background-image: url("https://www.transparenttextures.com/patterns/light-honeycomb-dark.png");
   min-height: calc(100vh - 112px);
 }
+
 small {
   color: red;
 }
@@ -36,8 +36,6 @@ small {
 main button {
   background-color: rgb(66, 164, 130) !important;
 }
-
-
 
 .card {
   width: 20%;
