@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This repo provides the platform to organise tasks to do, in progress, up for review and completed, as well with a search function.
+This repo provides the platform to organise tasks to do, in progress, up for review and completed, as well with a task search function via task name or person assigned to.
 
 ## Why we used the technologies we used:
 
@@ -18,7 +18,7 @@ The future goal will be to assign the cards to a filing system so that the 'done
 
 ## Live view of the website
 
-![](./Images/live-site.png)
+![](./Images/live-site-2.jpg)
 
 ## Credits
 

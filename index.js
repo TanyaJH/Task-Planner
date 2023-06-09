@@ -71,6 +71,12 @@ search.addEventListener("input", (event) => {
   });
 });
 
+class ResetSearch {
+  clearInput(search) {
+    return (search.value = "");
+  }
+}
+
 // <-- FORM LOGIC -->
 
 form.addEventListener("submit", (event) => {
@@ -82,11 +88,7 @@ const clearFields = () => {
   form.reset();
 };
 
-class ResetSearch {
-  clearInput(search) {
-    return (search.value = "");
-  }
-}
+
 
 taskName.addEventListener("input", () => {
   const validateTaskName = (text, minLength, maxLength) => {
