@@ -1,26 +1,8 @@
-/* header{
-    background-color: aqua;
-    display: flex;
-    justify-content: space-between;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-header nav ul{
-    display: flex;
-    
-}
-header ul{
-    list-style-type: none;
-}
-header li{
-    padding: 20px 15px;
-} */
-
-/* .task{
-    width: 20%;
-    background-color: rgb(94, 205, 63);
-    display: inline-table;
-    margin: 16px;
-    text-align: center;
-} */
 
 /* Navbar */
 
@@ -42,27 +24,20 @@ header li{
   width: 44%;
 }
 
-.addTask form .two {
-  /* padding: 0 6%; */
-}
-
-.addTask form .three {
-  /* padding: 0 6%; */
-}
-
 main {
-  background-color: rgb(167, 163, 163);
+  background-color: #d6d6d6;
+  background-image: url("https://www.transparenttextures.com/patterns/light-honeycomb-dark.png");
   min-height: calc(100vh - 112px);
 }
 small {
   color: red;
-  
-  
 }
 
 main button {
   background-color: rgb(66, 164, 130) !important;
 }
+
+
 
 .card {
   width: 20%;
@@ -75,9 +50,6 @@ main button {
 
 .status-label .two {
   display: inline-flex;
-  /* justify-content: space-evenly; */
-  /* justify-items: space-around; */
-  /* padding: 0 26%; */
 }
 
 .modal-footer button .close {
@@ -102,8 +74,4 @@ footer {
 }
 #uncopyright p {
   padding-bottom: 0 !important;
-}
-
-.form-label {
-  
 }
