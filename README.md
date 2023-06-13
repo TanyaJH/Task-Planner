@@ -18,7 +18,7 @@ The future goal will be to assign the cards to a filing system so that the 'done
 
 ## Live view of the website
 
-![](./Images/live-site-2.jpg)
+![](./Images/live-site-2.JPG)
 
 ## Credits
 
